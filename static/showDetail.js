@@ -19,6 +19,7 @@ window.addEventListener("DOMContentLoaded", () => {
       const overview = data.overview;
       const releaseDate = data.release_date;
       const averageVote = data.vote_average;
+      // data.backdrop_path
       const posterPath = data.poster_path;
       const poster = `https://image.tmdb.org/t/p/w200${posterPath}`;
 

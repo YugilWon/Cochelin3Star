@@ -9,8 +9,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  width: 300px;
-  height: 600px;
+  width: 500px;
+  height: 300px;
   padding: 20px;
   margin: 50px;
   border: 1px solid #ccc;
@@ -157,3 +157,8 @@ body {
   height: 100%;
   cursor: default;
 }
+
+/* #player {
+  10퍼 커진상태 환훈님은 이런식으로 크기를 키워서 오버플로우 발생시켜서 로고 짜르심
+ transform: scale(1.1);
+} */

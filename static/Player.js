@@ -1,3 +1,12 @@
+// import { showMovieList } from "./script.js";
+
+// showMovieList("")
+//   .then((data) => {
+//     // 가져온 데이터를 사용하는 작업 수행
+//     console.log(data);
+//   })
+//   .catch((err) => console.error(err));
+
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
 
@@ -40,11 +49,9 @@ fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options)
         },
       });
     }
-
     function onPlayerReady(event) {
       event.target.playVideo();
     }
-
     var done = false;
     function onPlayerStateChange(event) {
       if (event.data == YT.PlayerState.PLAYING && !done) {
@@ -54,7 +61,9 @@ fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options)
       player.stopVideo();
     }
 
-    onYouTubeIframeAPIReady();
+    // onYouTubeIframeAPIReady();
+    // YouTube Iframe API 스크립트 로드 완료 시점에서 onYouTubeIframeAPIReady 함수 호출
+    tag.onload = onYouTubeIframeAPIReady;
   })
   .catch((err) => console.error(err));
 
