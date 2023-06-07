@@ -8,6 +8,7 @@
     <script src="static/script.js" defer></script>
     <script src="static/MainPlayer.js" defer></script>
     <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="static/popularMovie.js" defer></script>
     <title>MIAPEDIA : 영화소개페이지</title>
   </head>
   <body>
@@ -21,15 +22,25 @@
           id="searchInput"
           placeholder="영화 제목을 입력해주세요"
         />
-        <button id="searchBtn"><img src="img/search.png" /></button>
+        <button id="searchBtn" onclick="viewSearchMovie()">
+          <img src="img/search.png" />
+        </button>
       </form>
     </div>
-
     <div id="main">
       <div id="player-wrapper">
         <div id="player"></div>
         <div id="click-blocker"></div>
       </div>
+      <br />
+      <div id="popular-title">Popular !</div>
+      <div id="popular-movie-container">
+        <ul id="popular-movie-list"></ul>
+        <a class="switchLeft sliderButton" id="leftBtn"><</a>
+        <a class="switchRight sliderButton" id="rightBtn">></a>
+      </div>
+      <br />
+      <div id="popular-title">코슐랭's Pick !</div>
       <ul id="movieList"></ul>
       <button id="topBtn"><img src="img/top.png" /></button>
     </div>

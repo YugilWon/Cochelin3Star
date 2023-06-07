@@ -115,6 +115,11 @@ function viewDetails(movieId) {
   window.location.href = `Detail.html?id=${movieId}`;
 }
 
+// 검색 결과를 다른 페이지에서 로드하기
+function viewSearchMovie() {
+  window.location.href = `search.html`;
+}
+
 // "" 가 입력된 상태로 함수 실행 --> 영화 전체목록 보여줌
 showMovieList("");
 
