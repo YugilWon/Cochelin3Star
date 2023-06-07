@@ -42,6 +42,8 @@ fetch(
                   </li>`;
 
       sliders.innerHTML += temp_html;
+
+      CochelinMoivesId.push(id); // CochelinMoivesId 배열에 id 값을 추가
     });
 
     scrollPerClick =

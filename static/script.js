@@ -1,6 +1,6 @@
 let videoKeys = [];
 let currentVideoIndex = 0;
-let isMuted = false;
+let isMuted = true;
 
 const options = {
   method: "GET",
@@ -43,20 +43,23 @@ function showMovieList(val) {
 
           document.querySelector("#movieList").appendChild(movieInfo);
 
-          // 영화 정보 가져오기
-          fetchMovieInfo(id, options).then((videoVal) => {
-            // YouTube 플레이어 초기화 후 loadVideoById 함수 호출
-            onYouTubeIframeAPIReady();
-            loadVideoById(videoVal);
-          });
+          CochelinMoivesId.push(id);
         }
+      });
+
+      CochelinMoivesId.forEach((id) => {
+        // 영화 정보 가져오기
+        fetchMovieInfo(id, options).then((videoVal) => {
+          // YouTube 플레이어 초기화 후 loadVideoById 함수 호출
+          onYouTubeIframeAPIReady();
+          loadVideoById(videoVal);
+        });
       });
     })
     .catch((err) => console.error(err));
 }
 // "" 가 입력된 상태로 함수 실행 --> 영화 전체목록 보여줌
 showMovieList("");
-
 // 영화 정보를 가져와서 YouTube 플레이어를 초기화하는 함수
 function fetchMovieInfo(id, options) {
   return fetch(
@@ -133,6 +136,10 @@ function fetchMovieInfo(id, options) {
         if (currentVideoIndex < videoKeys.length - 1) {
           currentVideoIndex++;
           playVideoByIndex(currentVideoIndex);
+        } else {
+          // 마지막 영상이 재생되면 처음 인덱스로 설정해서 다시 처음 영상 재생
+          currentVideoIndex = 0;
+          playVideoByIndex(currentVideoIndex);
         }
       }
 
@@ -170,6 +177,13 @@ function fetchMovieInfo(id, options) {
       };
     })
     .catch((err) => console.error(err));
+
+  //마우스 이벤트를 막는 Blocker
+  var clickBlocker = document.getElementById("click-blocker");
+  clickBlocker.addEventListener("click", function (event) {
+    event.stopPropagation();
+    event.preventDefault();
+  });
 }
 
 //페이지를 로드할 때 id값으로 불러오기
