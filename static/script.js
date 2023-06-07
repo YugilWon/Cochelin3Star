@@ -13,15 +13,6 @@ const options = {
 
 // 영화 리스트 보여주기
 function showMovieList(val) {
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YmVjM2U3MzdhYzIyZDQxOGExZTBmNGRmZTEzNTY3ZiIsInN1YiI6IjY0NzFiZjQ0YmUyZDQ5MDExNmM4YTk2MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.JvZ2uXWJg9pC1AfqkJeUENhOZIGdg7e9flH1BDoX6ME",
-    },
-  };
-
   fetch(
     "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
     options
@@ -54,8 +45,9 @@ function showMovieList(val) {
 
           // 영화 정보 가져오기
           fetchMovieInfo(id, options).then((videoVal) => {
-            // videoVal 값을 사용하여 원하는 작업 수행
-            console.log(videoVal);
+            // YouTube 플레이어 초기화 후 loadVideoById 함수 호출
+            onYouTubeIframeAPIReady();
+            loadVideoById(videoVal);
           });
         }
       });
@@ -74,7 +66,11 @@ function fetchMovieInfo(id, options) {
       // 영화 비디오 정보를 가져온 후 videoVal에 할당
       const videoVal = response.results[0].key;
 
+      let currentVideoIndex = Math.floor(Math.random() * videoKeys.length);
+
       videoKeys.push(videoVal);
+
+      var player;
 
       // YouTube 플레이어 초기화
       var tag = document.createElement("script");
@@ -82,10 +78,9 @@ function fetchMovieInfo(id, options) {
       var firstScriptTag = document.getElementsByTagName("script")[0];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-      var player;
       function onYouTubeIframeAPIReady() {
         player = new YT.Player("player", {
-          height: 720,
+          height: 600,
           width: "100%",
           videoId: videoVal,
           playerVars: {
@@ -100,18 +95,55 @@ function fetchMovieInfo(id, options) {
           },
         });
       }
+
+      // 이전 영상 재생 버튼 클릭 이벤트 처리
+      const previousBtn = document.getElementById("previousBtn");
+      previousBtn.addEventListener("click", playPreviousVideo);
+
+      // 다음 영상 재생 버튼 클릭 이벤트 처리
+      const nextBtn = document.getElementById("nextBtn");
+      nextBtn.addEventListener("click", playNextVideo);
+
+      // 이전 영상 재생 함수
+      function playPreviousVideo() {
+        if (currentVideoIndex > 0) {
+          currentVideoIndex--;
+          playVideoByIndex(currentVideoIndex);
+        }
+      }
+
+      // 다음 영상 재생 함수
+      function playNextVideo() {
+        if (currentVideoIndex < videoKeys.length - 1) {
+          currentVideoIndex++;
+          playVideoByIndex(currentVideoIndex);
+        }
+      }
+
+      // 인덱스에 해당하는 영상 재생 함수
+      function playVideoByIndex(index) {
+        const videoKey = videoKeys[index];
+        player.loadVideoById(videoKey);
+      }
+
       function onPlayerReady(event) {
         event.target.playVideo();
+        playVideoByIndex(currentVideoIndex);
       }
+
       var done = false;
       function onPlayerStateChange(event) {
         if (event.data == YT.PlayerState.PLAYING && !done) {
         }
       }
+
       function stopVideo() {
         player.stopVideo();
       }
-      tag.onload = onYouTubeIframeAPIReady;
+      tag.onload = function () {
+        onYouTubeIframeAPIReady();
+        player.addEventListener("onStateChange", onPlayerStateChange);
+      };
     })
     .catch((err) => console.error(err));
 }
@@ -170,15 +202,3 @@ const showTopPage = () => {
 };
 
 topBtn.addEventListener("click", showTopPage);
-
-// 키보드 이벤트 처리
-document.addEventListener("keydown", function (event) {
-  // 오른쪽 화살표 키를 누를 때 다음 비디오 재생
-  if (event.key === "ArrowRight") {
-    playNextVideo();
-  }
-  // 왼쪽 화살표 키를 누를 때 이전 비디오 재생
-  else if (event.key === "ArrowLeft") {
-    playPreviousVideo();
-  }
-});
