@@ -54,6 +54,8 @@ function showMovieList(val) {
     })
     .catch((err) => console.error(err));
 }
+// "" 가 입력된 상태로 함수 실행 --> 영화 전체목록 보여줌
+showMovieList("");
 
 // 영화 정보를 가져와서 YouTube 플레이어를 초기화하는 함수
 function fetchMovieInfo(id, options) {
@@ -153,26 +155,18 @@ function viewDetails(movieId) {
   window.location.href = `Detail.html?id=${movieId}`;
 }
 
+// 검색
 const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
-const val = searchInput.value;
 
-// 검색 결과를 다른 페이지에서 로드하기
-function viewSearchMovie() {
-  // 영화 검색기능
-  // searchBtn.addEventListener("click", showSearchList);
-  showSearchList();
-}
+searchBtn.addEventListener("click", showSearchList);
 
 function showSearchList(e) {
-  // movieList.innerHTML = ""; // 빈 여백값으로 만듬
   e.preventDefault(); // 브라우저의 기본동작 제한, 폼 제출시 페이지가 새로고침 되는 것을 막음
-  showMovieList(val);
-  window.location.href = `search.html?searchinput=${val}`;
+  // movieList.innerHTML = ""; // 빈 여백값으로 만듬
+  const val = searchInput.value;
+  window.location.href = `search.html?query=${val}`;
 }
-
-// "" 가 입력된 상태로 함수 실행 --> 영화 전체목록 보여줌
-// showMovieList("");
 
 // id 조회기능
 const movieList = document.getElementById("movieList");
@@ -203,12 +197,12 @@ const showTopPage = () => {
 
 topBtn.addEventListener("click", showTopPage);
 
-// 영화 리스트 더보기
-const clickMovieListBtn = document.getElementById("movieListBtn");
+// // 영화 리스트 더보기
+// const clickMovieListBtn = document.getElementById("movieListBtn");
 
-function moreMoiveList() {
-  // "" 가 입력된 상태로 함수 실행 --> 영화 전체목록 보여줌
-  showMovieList("");
-}
+// function moreMoiveList() {
+//   // "" 가 입력된 상태로 함수 실행 --> 영화 전체목록 보여줌
+//   showMovieList("");
+// }
 
-clickMovieListBtn.addEventListener("click", moreMoiveList);
+// clickMovieListBtn.addEventListener("click", moreMoiveList);

@@ -54,7 +54,7 @@ body {
   border-radius: 30px;
   background: none;
   outline: none;
-  color: black;
+  color: rgb(255, 255, 255);
   font-size: 13px;
   padding-left: 30px;
   padding-right: 30px;
@@ -165,4 +165,25 @@ body {
 
 #main #topBtn:hover {
   opacity: 0.6;
+}
+
+#player-wrapper {
+  position: relative;
+}
+
+/* 혜진 */
+
+#movieListBtn {
+  width: 70px;
+  height: 22px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  margin-left: 50%;
+  border: 1px solid white;
+  border-radius: 15px;
+}
+
+#movieListBtn:hover {
+  border: 2px solid white;
 }
