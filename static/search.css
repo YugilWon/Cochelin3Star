@@ -1,0 +1,189 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  background-color: black;
+  color: white;
+}
+
+#header {
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  height: 60px;
+  padding-top: 30px;
+  background-color: black;
+  color: white;
+}
+
+#header h1 {
+  margin-top: 40px;
+  float: left;
+  padding-left: 150px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+#header h1 img {
+  width: 150px;
+}
+
+#header form {
+  padding-right: 150px;
+  float: right;
+  height: 30px;
+}
+
+#header form #searchInput {
+  width: 140px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+#header form input[type="text"] {
+  width: 150px;
+  height: 37px;
+  border: 2px solid black;
+  border-radius: 30px;
+  background: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  font-size: 13px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+#header form #searchBtn {
+  float: right;
+  padding: 4px 0 0 4px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-top: 0;
+}
+
+#header form #searchBtn img {
+  width: 23px;
+}
+
+#main {
+  color: white;
+  padding-top: 120px;
+  text-align: center;
+  /* margin-left: 100px; */
+  /* width 값 정하기 */
+  width: 80%;
+  margin: 0 auto;
+}
+
+#main > #movieList > li {
+  width: 200px;
+  list-style: none;
+  float: left;
+  /* 30, 30 , 0 , 60에서 수정 */
+  padding: 30px 30px 0px 30px;
+  /* margin, box-sizing 추가 */
+  margin: 0 10px 20px 10px;
+  box-sizing: border-box;
+}
+
+#main > #movieList li .wrap {
+  cursor: pointer;
+  position: relative;
+  width: 200px;
+  height: 300px;
+  display: block;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 5px 10px 12px 3px rgba(0, 0, 0, 0.4);
+}
+
+#main > #movieList > li h2 {
+  font-size: 15px;
+  padding-top: 15px;
+}
+
+#main > #movieList > li h3 {
+  position: absolute;
+  color: rgb(208, 204, 204);
+  top: 12px;
+  left: 12px;
+  font-size: 16px;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 22px;
+  height: 22px;
+  line-height: 25px;
+  border-radius: 3px;
+  text-align: center;
+}
+
+#main > #movieList > li > .wrap span {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: 15px;
+  background: black;
+  line-height: 17px;
+  opacity: 0;
+  transition: 0.8s;
+  color: white;
+  font-size: 13px;
+  height: 300px;
+}
+
+#main > #movieList > li > .wrap > span:hover {
+  opacity: 0.8;
+}
+
+#main > #movieList > li > .wrap p {
+  display: none;
+}
+
+#main > #movieList > li > p {
+  font-size: 13px;
+}
+
+#main #topBtn {
+  cursor: pointer;
+  position: fixed;
+  top: 50%;
+  right: 30px;
+  background: none;
+  border: none;
+}
+
+#main #topBtn img {
+  width: 30px;
+}
+
+#main #topBtn:hover {
+  opacity: 0.6;
+}
+
+#player-wrapper {
+  position: relative;
+}
+
+/* 혜진 */
+
+#movieListBtn {
+  width: 70px;
+  height: 22px;
+  font-size: 20px;
+  text-align: center;
+  cursor: pointer;
+  margin-left: 50%;
+  border: 1px solid white;
+  border-radius: 15px;
+}
+
+#movieListBtn:hover {
+  border: 2px solid white;
+}
