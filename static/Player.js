@@ -1,12 +1,3 @@
-// import { showMovieList } from "./script.js";
-
-// showMovieList("")
-//   .then((data) => {
-//     // 가져온 데이터를 사용하는 작업 수행
-//     console.log(data);
-//   })
-//   .catch((err) => console.error(err));
-
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
 
@@ -39,6 +30,7 @@ fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options)
         videoId: videoVal,
         playerVars: {
           autoplay: 1,
+          mute: 1,
           loop: 1,
           controls: 0, // 플레이어 컨트롤러 숨김
           showinfo: 0, // 동영상 정보 (로고, 제목 등) 숨김
@@ -49,9 +41,31 @@ fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`, options)
         },
       });
     }
+
+    //음소거 상태를 토글하는 함수
+    function toggleMute() {
+      if (isMuted) {
+        player.unMute(); // 소리 켜기
+        document.getElementById("muteButton").textContent = "음소거"; // 버튼 텍스트 변경
+      } else {
+        player.mute(); // 소리 끄기
+        document.getElementById("muteButton").textContent = "음소거 해제"; // 버튼 텍스트 변경
+      }
+      isMuted = !isMuted; // 소리 상태 업데이트
+    }
+
     function onPlayerReady(event) {
+      document.getElementById("player").addEventListener("mousedown", (e) => {
+        e.preventDefault(); // 마우스 올려서 영상 조작 등을 방지
+      });
+
+      // 음소거 버튼 클릭 이벤트 처리
+      const muteButton = document.getElementById("muteButton");
+      muteButton.addEventListener("click", toggleMute);
+
       event.target.playVideo();
     }
+
     var done = false;
     function onPlayerStateChange(event) {
       if (event.data == YT.PlayerState.PLAYING && !done) {

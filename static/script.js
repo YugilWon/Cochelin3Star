@@ -1,6 +1,6 @@
 let videoKeys = [];
 let currentVideoIndex = 0;
-let player;
+let isMuted = false;
 
 const options = {
   method: "GET",
@@ -66,6 +66,7 @@ function fetchMovieInfo(id, options) {
       // 영화 비디오 정보를 가져온 후 videoVal에 할당
       const videoVal = response.results[0].key;
 
+      //랜덤 재생을 위해 Math 사용
       let currentVideoIndex = Math.floor(Math.random() * videoKeys.length);
 
       videoKeys.push(videoVal);
@@ -89,11 +90,24 @@ function fetchMovieInfo(id, options) {
             controls: 0, // 플레이어 컨트롤러 숨김
             showinfo: 0, // 동영상 정보 (로고, 제목 등) 숨김
             disablekb: 1, // 키보드 입력 비활성화
+            mute: 1,
           },
           events: {
             onReady: onPlayerReady,
           },
         });
+      }
+
+      //음소거 상태를 토글하는 함수
+      function toggleMute() {
+        if (isMuted) {
+          player.unMute(); // 소리 켜기
+          document.getElementById("muteButton").textContent = "음소거"; // 버튼 텍스트 변경
+        } else {
+          player.mute(); // 소리 끄기
+          document.getElementById("muteButton").textContent = "음소거 해제"; // 버튼 텍스트 변경
+        }
+        isMuted = !isMuted; // 소리 상태 업데이트
       }
 
       // 이전 영상 재생 버튼 클릭 이벤트 처리
@@ -127,6 +141,14 @@ function fetchMovieInfo(id, options) {
       }
 
       function onPlayerReady(event) {
+        document.getElementById("player").addEventListener("mousedown", (e) => {
+          e.preventDefault(); // 마우스 올려서 영상 조작 등을 방지
+        });
+
+        // 음소거 버튼 클릭 이벤트 처리
+        const muteButton = document.getElementById("muteButton");
+        muteButton.addEventListener("click", toggleMute);
+
         event.target.playVideo();
         playVideoByIndex(currentVideoIndex);
       }
