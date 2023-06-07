@@ -1,3 +1,7 @@
+let videoKeys = [];
+let currentVideoIndex = 0;
+let player;
+
 const options = {
   method: "GET",
   headers: {
@@ -9,15 +13,6 @@ const options = {
 
 // 영화 리스트 보여주기
 function showMovieList(val) {
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1YmVjM2U3MzdhYzIyZDQxOGExZTBmNGRmZTEzNTY3ZiIsInN1YiI6IjY0NzFiZjQ0YmUyZDQ5MDExNmM4YTk2MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.JvZ2uXWJg9pC1AfqkJeUENhOZIGdg7e9flH1BDoX6ME",
-    },
-  };
-
   fetch(
     "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
     options
@@ -48,68 +43,111 @@ function showMovieList(val) {
 
           document.querySelector("#movieList").appendChild(movieInfo);
 
-          fetch(
-            `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
-            options
-          )
-            .then((response) => response.json())
-            .then((response) => {
-              // 영화 비디오 정보를 가져온 후 videoVal에 할당
-              const videoVal = response.results[0].key;
-
-              // YouTube 플레이어 초기화
-              var tag = document.createElement("script");
-              tag.src = "https://www.youtube.com/iframe_api";
-              var firstScriptTag = document.getElementsByTagName("script")[0];
-              firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-              var player;
-              function onYouTubeIframeAPIReady() {
-                player = new YT.Player("player", {
-                  height: 720,
-                  width: "100%",
-                  videoId: videoVal,
-                  playerVars: {
-                    autoplay: 1,
-                    loop: 1,
-                    controls: 0, // 플레이어 컨트롤러 숨김
-                    showinfo: 0, // 동영상 정보 (로고, 제목 등) 숨김
-                    disablekb: 1, //키보드 입력 비활성화
-                  },
-                  events: {
-                    onReady: onPlayerReady,
-                  },
-                });
-              }
-              function onPlayerReady(event) {
-                event.target.playVideo();
-              }
-              var done = false;
-              function onPlayerStateChange(event) {
-                if (event.data == YT.PlayerState.PLAYING && !done) {
-                }
-              }
-              function stopVideo() {
-                player.stopVideo();
-              }
-
-              // onYouTubeIframeAPIReady();
-              // YouTube Iframe API 스크립트 로드 완료 시점에서 onYouTubeIframeAPIReady 함수 호출
-              tag.onload = onYouTubeIframeAPIReady;
-            })
-            .catch((err) => console.error(err));
-
-          // var clickBlocker = document.getElementById("click-blocker");
-          // clickBlocker.addEventListener("click", function (event) {
-          //   event.stopPropagation();
-          //   event.preventDefault();
-          // });
+          // 영화 정보 가져오기
+          fetchMovieInfo(id, options).then((videoVal) => {
+            // YouTube 플레이어 초기화 후 loadVideoById 함수 호출
+            onYouTubeIframeAPIReady();
+            loadVideoById(videoVal);
+          });
         }
       });
     })
-
     .catch((err) => console.error(err));
 }
+
+// 영화 정보를 가져와서 YouTube 플레이어를 초기화하는 함수
+function fetchMovieInfo(id, options) {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
+    options
+  )
+    .then((response) => response.json())
+    .then((response) => {
+      // 영화 비디오 정보를 가져온 후 videoVal에 할당
+      const videoVal = response.results[0].key;
+
+      let currentVideoIndex = Math.floor(Math.random() * videoKeys.length);
+
+      videoKeys.push(videoVal);
+
+      var player;
+
+      // YouTube 플레이어 초기화
+      var tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName("script")[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player("player", {
+          height: 600,
+          width: "100%",
+          videoId: videoVal,
+          playerVars: {
+            autoplay: 1,
+            loop: 1,
+            controls: 0, // 플레이어 컨트롤러 숨김
+            showinfo: 0, // 동영상 정보 (로고, 제목 등) 숨김
+            disablekb: 1, // 키보드 입력 비활성화
+          },
+          events: {
+            onReady: onPlayerReady,
+          },
+        });
+      }
+
+      // 이전 영상 재생 버튼 클릭 이벤트 처리
+      const previousBtn = document.getElementById("previousBtn");
+      previousBtn.addEventListener("click", playPreviousVideo);
+
+      // 다음 영상 재생 버튼 클릭 이벤트 처리
+      const nextBtn = document.getElementById("nextBtn");
+      nextBtn.addEventListener("click", playNextVideo);
+
+      // 이전 영상 재생 함수
+      function playPreviousVideo() {
+        if (currentVideoIndex > 0) {
+          currentVideoIndex--;
+          playVideoByIndex(currentVideoIndex);
+        }
+      }
+
+      // 다음 영상 재생 함수
+      function playNextVideo() {
+        if (currentVideoIndex < videoKeys.length - 1) {
+          currentVideoIndex++;
+          playVideoByIndex(currentVideoIndex);
+        }
+      }
+
+      // 인덱스에 해당하는 영상 재생 함수
+      function playVideoByIndex(index) {
+        const videoKey = videoKeys[index];
+        player.loadVideoById(videoKey);
+      }
+
+      function onPlayerReady(event) {
+        event.target.playVideo();
+        playVideoByIndex(currentVideoIndex);
+      }
+
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+        }
+      }
+
+      function stopVideo() {
+        player.stopVideo();
+      }
+      tag.onload = function () {
+        onYouTubeIframeAPIReady();
+        player.addEventListener("onStateChange", onPlayerStateChange);
+      };
+    })
+    .catch((err) => console.error(err));
+}
+
 //페이지를 로드할 때 id값으로 불러오기
 function viewDetails(movieId) {
   window.location.href = `Detail.html?id=${movieId}`;
