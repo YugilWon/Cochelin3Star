@@ -115,26 +115,26 @@ function viewDetails(movieId) {
   window.location.href = `Detail.html?id=${movieId}`;
 }
 
+const searchInput = document.getElementById("searchInput");
+const searchBtn = document.getElementById("searchBtn");
+const val = searchInput.value;
+
 // 검색 결과를 다른 페이지에서 로드하기
 function viewSearchMovie() {
-  window.location.href = `search.html`;
+  // 영화 검색기능
+  // searchBtn.addEventListener("click", showSearchList);
+  showSearchList();
+}
+
+function showSearchList(e) {
+  // movieList.innerHTML = ""; // 빈 여백값으로 만듬
+  e.preventDefault(); // 브라우저의 기본동작 제한, 폼 제출시 페이지가 새로고침 되는 것을 막음
+  showMovieList(val);
+  window.location.href = `search.html?searchinput=${val}`;
 }
 
 // "" 가 입력된 상태로 함수 실행 --> 영화 전체목록 보여줌
-showMovieList("");
-
-// 영화 검색기능
-const searchInput = document.getElementById("searchInput");
-const searchBtn = document.getElementById("searchBtn");
-
-searchBtn.addEventListener("click", showSearchList);
-
-function showSearchList(e) {
-  movieList.innerHTML = ""; // 빈 여백값으로 만듬
-  e.preventDefault(); // 브라우저의 기본동작 제한, 폼 제출시 페이지가 새로고침 되는 것을 막음
-  const val = searchInput.value;
-  showMovieList(val);
-}
+// showMovieList("");
 
 // id 조회기능
 const movieList = document.getElementById("movieList");
@@ -164,3 +164,13 @@ const showTopPage = () => {
 };
 
 topBtn.addEventListener("click", showTopPage);
+
+// 영화 리스트 더보기
+const clickMovieListBtn = document.getElementById("movieListBtn");
+
+function moreMoiveList() {
+  // "" 가 입력된 상태로 함수 실행 --> 영화 전체목록 보여줌
+  showMovieList("");
+}
+
+clickMovieListBtn.addEventListener("click", moreMoiveList);

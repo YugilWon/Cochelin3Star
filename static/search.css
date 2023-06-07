@@ -73,111 +73,11 @@ body {
   width: 23px;
 }
 
-/* ---------혜진--------- */
-
-#popular-title {
-  font-size: 28px;
-}
-
-/* 컨테이너 */
-#popular-movie-container {
-  height: 350px;
-  width: 95%;
-  position: relative;
-
-  /* !!!!!!!!!!!!!! */
-  margin-left: 20px;
-}
-
-/* 버튼 */
-#popular-movie-container .switchLeft,
-#popular-movie-container .switchRight {
-  font-weight: bold;
-  height: 100%;
-  width: 40px;
-  line-height: 330px;
-  font-size: 25px;
-  text-align: center;
-  font-family: sans-serif;
-  top: 0;
-  z-index: 3;
-}
-
-.sliderButton:hover {
-  color: rgb(142, 142, 142);
-  cursor: pointer;
-}
-
-#popular-movie-container .switchLeft {
-  position: absolute;
-  left: -50px;
-}
-
-#popular-movie-container .switchRight {
-  position: absolute;
-  right: -50px;
-}
-
-/* 슬라이드 */
-#popular-movie-list {
-  list-style: none;
-  height: 350px;
-  width: auto;
-  /* 자동 줄바꿈 방지 */
-  white-space: nowrap;
-  display: inline-block;
-  text-align: center;
-  /* padding-bottom: 10px !important; */
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-}
-
-/* #popular-movie-list.animated {
-  transition: 0.5s ease out;
-} */
-
-/* 아이템 */
-#popular-movie-item {
-  position: relative;
-  cursor: pointer;
-}
-/* 
-#popular-movie-item:not(:last-child) {
-  margin-right: 20px;
-} */
-
-#popular-movie-item:hover {
-  transform: scale(1.1);
-  transition: all 0.3s linear;
-  z-index: 5;
-}
-
-#popular-movie-item > img {
-  /* min-width: 147px;
-  max-width: 147px;
-  height: 200px; */
-  height: auto;
-  width: 200px;
-  /* background-size: cover; */
-  margin: 10px;
-  transition: 0.5s ease;
-  z-index: 2;
-}
-
-#popular-movie-rank {
-  position: absolute;
-  left: 7%;
-  top: 3%;
-  color: white;
-  font-size: 25px;
-}
-
-/* ---------혜진--------- */
-
 #main {
-  padding-top: 80px;
-  margin-left: 100px;
+  color: white;
+  padding-top: 120px;
+  text-align: center;
+  /* margin-left: 100px; */
   /* width 값 정하기 */
   width: 80%;
   margin: 0 auto;
@@ -266,26 +166,3 @@ body {
 #main #topBtn:hover {
   opacity: 0.6;
 }
-
-#player-wrapper {
-  position: relative;
-}
-
-/* 혜진 */
-
-#movieListBtn {
-  width: 70px;
-  height: 22px;
-  font-size: 20px;
-  text-align: center;
-  cursor: pointer;
-  margin-left: 50%;
-  border: 1px solid white;
-  border-radius: 15px;
-}
-
-#movieListBtn:hover {
-  border: 2px solid white;
-}
-
-/* 혜진 */

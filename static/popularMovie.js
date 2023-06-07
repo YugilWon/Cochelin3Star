@@ -39,7 +39,7 @@ fetch(
 
     scrollPerClick =
       document.querySelector("#popular-movie-item").clientWidth + ImagePadding;
-    console.log(scrollPerClick);
+    // console.log(scrollPerClick);
   })
   .catch((err) => console.error(err));
 
