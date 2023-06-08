@@ -12,7 +12,7 @@ window.addEventListener("DOMContentLoaded", () => {
   };
 
   // 영화 데이터 가져오기
-  fetch(`https://api.themoviedb.org/3/movie/${id}?language=en-US`, options)
+  fetch(`https://api.themoviedb.org/3/movie/${id}?language=ko-KR`, options)
     .then((response) => response.json())
     .then((data) => {
       const title = data.title;

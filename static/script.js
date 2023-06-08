@@ -14,11 +14,12 @@ const options = {
 // 영화 리스트 보여주기
 function showMovieList(val) {
   fetch(
-    "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
+    "https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page=1",
     options
   )
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
       let results = data["results"];
       results.map((a, i) => {
         let title = a["title"];
@@ -31,15 +32,14 @@ function showMovieList(val) {
         // 대소문자 구분 없이 입력한 제목에 따른 영화 검색하기
         if (title.toLowerCase().includes(val.toLowerCase().trim())) {
           const movieInfo = document.createElement("li");
-          movieInfo.innerHTML = ` <div class= "wrap">
+          movieInfo.innerHTML = ` <div class= "wrap" onclick="viewDetails('${id}')">
 			                              <img src=${poster} alt="Movie Poster">
                                     <h3>${rank}</h3>
 			                              <span>${overview}</span>
                                     <p>${id}</p>
 			                            </div>
 			                            <h2>${title}</h2>
-			                            <p>개봉 ${date} 평점 ${average}</p>
-                                  <button onclick="viewDetails('${id}')">자세히 보기</button>`;
+			                            <p>개봉 ${date} 평점 ${average}</p>`;
 
           document.querySelector("#movieList").appendChild(movieInfo);
 
@@ -205,17 +205,16 @@ function showSearchList(e) {
 }
 
 // id 조회기능
-const movieList = document.getElementById("movieList");
-function showMovieInfo(e) {
-  const wrapElement = e.target.closest(".wrap");
-  if (wrapElement) {
-    const title = wrapElement.nextElementSibling.textContent;
-    const id = wrapElement.querySelector("p").textContent;
+// function showMovieInfo(e) {
+//   const wrapElement = e.target.closest(".wrap");
+//   if (wrapElement) {
+//     const title = wrapElement.nextElementSibling.textContent;
+//     const id = wrapElement.querySelector("p").textContent;
 
-    alert(`"${title}" 의 id는 "${id}" 입니다.`);
-  }
-}
-movieList.addEventListener("click", showMovieInfo);
+//     alert(`"${title}" 의 id는 "${id}" 입니다.`);
+//   }
+// }
+// movieList.addEventListener("click", showMovieInfo);
 
 // 페이지 로드시 커서 입력창에 위치
 window.onload = function () {
@@ -233,12 +232,18 @@ const showTopPage = () => {
 
 topBtn.addEventListener("click", showTopPage);
 
-// // 영화 리스트 더보기
-// const clickMovieListBtn = document.getElementById("movieListBtn");
+// 영화 리스트 더보기
+const clickMovieListBtn = document.getElementById("movieListBtn");
+const movieList = document.getElementById("movieList");
 
-// function moreMoiveList() {
-//   // "" 가 입력된 상태로 함수 실행 --> 영화 전체목록 보여줌
-//   showMovieList("");
-// }
+function moreMoiveList() {
+  if (movieList.style.display === "none") {
+    movieList.style.display = "block";
+    clickMovieListBtn.innerText = "리스트 닫기";
+  } else {
+    movieList.style.display = "none";
+    clickMovieListBtn.innerText = "영화 더보기";
+  }
+}
 
-// clickMovieListBtn.addEventListener("click", moreMoiveList);
+clickMovieListBtn.addEventListener("click", moreMoiveList);
