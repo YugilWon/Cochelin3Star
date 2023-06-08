@@ -29,14 +29,13 @@ window.addEventListener("DOMContentLoaded", () => {
         let poster = `https://image.tmdb.org/t/p/w200` + a["poster_path"];
 
         const movieInfo = document.createElement("li");
-        movieInfo.innerHTML = `<div class= "wrap">
+        movieInfo.innerHTML = `<div class= "wrap" onclick="viewDetails('${id}')">
 			                              <img src=${poster} alt="Movie Poster">
 			                              <span>${overview}</span>
                                     <p>${id}</p>
 			                            </div>
 			                            <h2>${title}</h2>
-			                            <p>개봉 ${date} 평점 ${average}</p>
-                                  <button onclick="viewDetails('${id}')">자세히 보기</button>`;
+			                            <p>개봉 ${date} 평점 ${average}</p>`;
 
         document.querySelector("#movieList").appendChild(movieInfo);
       });

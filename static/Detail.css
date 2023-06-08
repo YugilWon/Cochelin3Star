@@ -221,11 +221,6 @@ body {
   height: 100%;
   cursor: default;
 }
-
-/* #player {
-  10퍼 커진상태 환훈님은 이런식으로 크기를 키워서 오버플로우 발생시켜서 로고 짜르심
- transform: scale(1.1);
-} */
 #muteButton {
   position: absolute;
   background-color: transparent;
@@ -243,4 +238,72 @@ body {
   transform: translate(-10%, -10%);
   z-index: 3; /* 필요에 따라 조정 가능 */
   color: white; /* 텍스트 색상 설정 */
+
+/* ------비슷한영화추천------ */
+
+#similar-container > li {
+  width: 200px;
+  list-style: none;
+  float: left;
+  /* 30, 30 , 0 , 60에서 수정 */
+  padding: 30px 30px 0px 30px;
+  /* margin, box-sizing 추가 */
+  margin: 0 10px 20px 10px;
+  box-sizing: border-box;
+}
+
+#similar-container li .wrap {
+  cursor: pointer;
+  position: relative;
+  width: 200px;
+  height: 300px;
+  display: block;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 5px 10px 12px 3px rgba(0, 0, 0, 0.4);
+}
+
+#similar-container > li h2 {
+  font-size: 15px;
+  padding-top: 15px;
+}
+
+#similar-container > li h3 {
+  position: absolute;
+  color: rgb(208, 204, 204);
+  top: 12px;
+  left: 12px;
+  font-size: 16px;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 22px;
+  height: 22px;
+  line-height: 25px;
+  border-radius: 3px;
+  text-align: center;
+}
+
+#similar-container > li > .wrap span {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: 15px;
+  background: black;
+  line-height: 17px;
+  opacity: 0;
+  transition: 0.8s;
+  color: white;
+  font-size: 13px;
+  height: 300px;
+}
+
+#similar-container > li > .wrap > span:hover {
+  opacity: 0.8;
+}
+
+#similar-container > li > .wrap p {
+  display: none;
+}
+
+#similar-container > li > p {
+  font-size: 13px;
 }
