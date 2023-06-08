@@ -33,10 +33,19 @@
       <div id="player-wrapper">
         <div id="player"></div>
         <div id="click-blocker"></div>
+        <div class="text-overlay">
+          <h1>NOW SHOWING</h1>
+        </div>
+        <div class="button-overlay">
+          <button id="previousBtn">Prev</button>
+          <button id="nextBtn">Next</button>
+        </div>
+        <div class="soundBtn-overlay">
+          <button id="muteButton">
+            <img src="img/play.png" alt="음소거 해제" />
+          </button>
+        </div>
       </div>
-      <button id="muteButton">음소거 해제</button>
-      <button id="previousBtn">Previous</button>
-      <button id="nextBtn">Next</button>
       <br />
       <div id="popular-title">Popular !</div>
       <div id="popular-movie-container">
@@ -52,10 +61,8 @@
         <a class="switchRight sliderButton" id="CochelinrightBtn">></a>
       </div>
       <br />
-      <div id="movieListBtn">영화 더보기</div>
-      <br />
-      <br />
-      <ul id="movieList" style="display: none"></ul>
+      <div id="movieListBtn">더보기</div>
+      <ul id="movieList"></ul>
       <button id="topBtn"><img src="img/top.png" /></button>
     </div>
   </body>

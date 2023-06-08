@@ -20,10 +20,7 @@ let scrollPerClick;
 let ImagePadding = 20;
 let scrollAmount = 0;
 
-fetch(
-  "https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1",
-  options
-)
+fetch("https://api.themoviedb.org/3/movie/popular?language=ko&page=1", options)
   .then((response) => response.json())
   .then((response) => {
     let movies = response["results"];
@@ -37,18 +34,12 @@ fetch(
 
       let temp_html = ``;
       temp_html = `<li id="popular-movie-item">
-                  <img src="${poster}" art=${title} onclick="viewDetails('${id}')" />
+                  <img src="${poster}" alt=${title} onclick="viewDetails('${id}')" />
                   <span id="popular-movie-rank">${rank}</span>
                   </li>`;
 
       sliders.innerHTML += temp_html;
-
-      CochelinMoivesId.push(id); // CochelinMoivesId 배열에 id 값을 추가
     });
-
-    scrollPerClick =
-      document.querySelector("#popular-movie-item").clientWidth + ImagePadding;
-    // console.log(scrollPerClick);
   })
   .catch((err) => console.error(err));
 
@@ -57,33 +48,77 @@ function viewDetails(movieId) {
   window.location.href = `Detail.html?id=${movieId}`;
 }
 
-function sliderScrollLeft() {
-  sliders.scrollTo({
-    top: 0,
-    left: (scrollAmount -= scrollPerClick),
-    behavior: "smooth",
-  });
+let slides,
+  slide,
+  currentIdx = 0,
+  slideCount,
+  slideWidth = 200,
+  slideMargin = 30;
 
-  if (scrollAmount < 0) {
-    scrollAmount = 0;
+// 슬라이드의 복사본을 만들어 앞또는 뒤에 추가
+function makeClone() {
+  // 뒷부분의 복사본
+  console.log(slide);
+  for (let i = 0; i < slideCount; i++) {
+    // a.cloneNode() => a 요소를 그대로 복사
+    // a.cloneNode(true) => a 뿐만 아니라 a 의 자식 모두 복사
+    let cloneSlide = slide[i].cloneNode(true);
+    cloneSlide.classList.add("clone");
+    // slides (ul) 태그에 복사본을 넣어줌
+    slides.appendChild(cloneSlide);
   }
+  // 앞부분의 복사본 5,4,3,2,1 순서
+  for (let i = slideCount - 1; i >= 0; i--) {
+    let cloneSlide = slide[i].cloneNode(true);
+    cloneSlide.classList.add("clone");
+    slides.prepend(cloneSlide);
+  }
+  updateWidth();
+  setInitialPos();
+  setTimeout(function () {
+    slides.classList.add("animated");
+  }, 100);
 }
 
-function sliderScrollRight() {
-  if (scrollAmount <= sliders.scrollWidth - sliders.clientWidth) {
-    sliders.scrollTo({
-      top: 0,
-      left: (scrollAmount += scrollPerClick),
-      behavior: "smooth",
-    });
-  }
+// 요소가 일렬로 서있도록 요소를 감싼 너비를 모든요소값+마진값으로 변경
+function updateWidth() {
+  let currentSlides = document.querySelectorAll("#popular-movie-list li");
+  let newSlideCount = currentSlides.length;
+  let newWidth =
+    (slideWidth + slideMargin) * newSlideCount - slideMargin + "px";
+  slides.style.width = newWidth;
 }
 
-const leftBtn = document.getElementById("leftBtn");
-const rightBtn = document.getElementById("rightBtn");
+//초기 위치를 slide 0번 인덱스 부터
+function setInitialPos() {
+  let initialTranslateValue = -(slideWidth + slideMargin) * slideCount;
+  // slides {transform:translateX(-1000px);}
+  slides.style.transform = `translateX(${initialTranslateValue}px)`;
+}
 
-leftBtn.addEventListener("click", sliderScrollLeft);
-rightBtn.addEventListener("click", sliderScrollRight);
+document.getElementById("rightBtn").addEventListener("click", function () {
+  moveSlide(currentIdx + 4);
+});
+
+document.getElementById("leftBtn").addEventListener("click", function () {
+  moveSlide(currentIdx - 4);
+});
+
+// 좌우로 움직임
+function moveSlide(num) {
+  slides.style.left = -num * (slideWidth + slideMargin) + "px";
+  currentIdx = num;
+  if (Math.abs(currentIdx) == slideCount) {
+    setTimeout(function () {
+      slides.classList.remove("animated");
+      slides.style.left = "0px";
+      currentIdx = 0;
+    }, 600);
+    setTimeout(function () {
+      slides.classList.add("animated");
+    }, 800);
+  }
+}
 
 // ========================================================
 
@@ -91,7 +126,7 @@ for (let i = 0; i < CochelinMoivesId.length; i++) {
   fetch(
     "https://api.themoviedb.org/3/movie/" +
       CochelinMoivesId[i] +
-      "?language=ko-KR",
+      "?language=ko",
     options
   )
     .then((response) => response.json())
@@ -104,46 +139,97 @@ for (let i = 0; i < CochelinMoivesId.length; i++) {
 
       let temp_html = ``;
       temp_html = `<li id="Cochelin-movie-item">
-                <img src="${poster}" art=${title} onclick="viewDetails('${id}')" />
+                <img src="${poster}" alt=${title} onclick="viewDetails('${id}')" />
                 <span id="name">${name}'s pick</span>
                 </li>`;
 
       CochelinSliders.innerHTML += temp_html;
-
-      CochelinscrollPerClick =
-        document.querySelector("#Cochelin-movie-item").clientWidth +
-        ImagePadding;
     })
     .catch((err) => console.error(err));
 }
 
-function CochelinsliderScrollLeft() {
-  CochelinSliders.scrollTo({
-    top: 0,
-    left: (scrollAmount -= CochelinscrollPerClick),
-    behavior: "smooth",
+let Cslides,
+  Cslide,
+  CcurrentIdx = 0,
+  CslideCount,
+  CslideWidth = 200,
+  CslideMargin = 30;
+
+window.onload = function () {
+  slides = document.querySelector("#popular-movie-list");
+  slide = document.querySelectorAll("#popular-movie-list li");
+  slideCount = slide.length;
+  makeClone();
+  Cslides = document.querySelector("#Cochelin-movie-list");
+  Cslide = document.querySelectorAll("#Cochelin-movie-list li");
+  CslideCount = Cslide.length;
+  CmakeClone();
+};
+
+// 슬라이드의 복사본을 만들어 앞또는 뒤에 추가
+function CmakeClone() {
+  // 뒷부분의 복사본
+  for (let i = 0; i < CslideCount; i++) {
+    // a.cloneNode() => a 요소를 그대로 복사
+    // a.cloneNode(true) => a 뿐만 아니라 a 의 자식 모두 복사
+    let CcloneSlide = Cslide[i].cloneNode(true);
+    CcloneSlide.classList.add("clone");
+    // slides (ul) 태그에 복사본을 넣어줌
+    Cslides.appendChild(CcloneSlide);
+  }
+  // 앞부분의 복사본 5,4,3,2,1 순서
+  for (let i = CslideCount - 1; i >= 0; i--) {
+    let CcloneSlide = Cslide[i].cloneNode(true);
+    CcloneSlide.classList.add("clone");
+    Cslides.prepend(CcloneSlide);
+  }
+  CupdateWidth();
+  CsetInitialPos();
+  setTimeout(function () {
+    Cslides.classList.add("animated");
+  }, 100);
+}
+
+// 요소가 일렬로 서있도록 요소를 감싼 너비를 모든요소값+마진값으로 변경
+function CupdateWidth() {
+  let CcurrentSlides = document.querySelectorAll("#Cochelin-movie-list li");
+  let CnewSlideCount = CcurrentSlides.length;
+  let CnewWidth =
+    (CslideWidth + CslideMargin) * CnewSlideCount - CslideMargin + "px";
+  Cslides.style.width = CnewWidth;
+}
+
+//초기 위치를 slide 0번 인덱스 부터
+function CsetInitialPos() {
+  let CinitialTranslateValue = -(CslideWidth + CslideMargin) * CslideCount;
+  // slides {transform:translateX(-1000px);}
+  Cslides.style.transform = `translateX(${CinitialTranslateValue}px)`;
+}
+
+document
+  .getElementById("CochelinrightBtn")
+  .addEventListener("click", function () {
+    CmoveSlide(CcurrentIdx + 5);
   });
 
-  if (scrollAmount < 0) {
-    scrollAmount = 0;
+document
+  .getElementById("CochelinleftBtn")
+  .addEventListener("click", function () {
+    CmoveSlide(CcurrentIdx - 5);
+  });
+
+// 좌우로 움직임
+function CmoveSlide(num) {
+  Cslides.style.left = -num * (CslideWidth + CslideMargin) + "px";
+  CcurrentIdx = num;
+  if (Math.abs(CcurrentIdx) == CslideCount) {
+    setTimeout(function () {
+      Cslides.classList.remove("animated");
+      Cslides.style.left = "0px";
+      CcurrentIdx = 0;
+    }, 600);
+    setTimeout(function () {
+      Cslides.classList.add("animated");
+    }, 800);
   }
 }
-
-function CochelinsliderScrollRight() {
-  if (
-    scrollAmount <=
-    CochelinSliders.scrollWidth - CochelinSliders.clientWidth
-  ) {
-    CochelinSliders.scrollTo({
-      top: 0,
-      left: (scrollAmount += CochelinscrollPerClick),
-      behavior: "smooth",
-    });
-  }
-}
-
-const CochelinleftBtn = document.getElementById("CochelinleftBtn");
-const CochelinrightBtn = document.getElementById("CochelinrightBtn");
-
-CochelinleftBtn.addEventListener("click", CochelinsliderScrollLeft);
-CochelinrightBtn.addEventListener("click", CochelinsliderScrollRight);

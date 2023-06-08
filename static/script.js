@@ -107,10 +107,14 @@ function fetchMovieInfo(id, options) {
       function toggleMute() {
         if (isMuted) {
           player.unMute(); // 소리 켜기
-          document.getElementById("muteButton").textContent = "음소거"; // 버튼 텍스트 변경
+          document.getElementById(
+            "muteButton"
+          ).innerHTML = `<img src="img/mute.png" alt="음소거 해제" />`; // 버튼 텍스트 변경
         } else {
           player.mute(); // 소리 끄기
-          document.getElementById("muteButton").textContent = "음소거 해제"; // 버튼 텍스트 변경
+          document.getElementById(
+            "muteButton"
+          ).innerHTML = `<img src="img/play.png" alt="음소거 해제" />`; // 버튼 텍스트 변경
         }
         isMuted = !isMuted; // 소리 상태 업데이트
       }
