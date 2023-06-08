@@ -21,7 +21,7 @@ let ImagePadding = 20;
 let scrollAmount = 0;
 
 fetch(
-  "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
+  "https://api.themoviedb.org/3/movie/popular?language=ko-KR&page=1",
   options
 )
   .then((response) => response.json())
@@ -89,7 +89,7 @@ for (let i = 0; i < CochelinMoivesId.length; i++) {
   fetch(
     "https://api.themoviedb.org/3/movie/" +
       CochelinMoivesId[i] +
-      "?language=en-US",
+      "?language=ko-KR",
     options
   )
     .then((response) => response.json())
