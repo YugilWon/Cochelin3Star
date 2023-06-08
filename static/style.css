@@ -8,6 +8,10 @@ a {
   color: inherit;
 }
 
+ul {
+  list-style: none;
+}
+
 body {
   background-color: black;
   color: white;
@@ -18,13 +22,13 @@ body {
   width: 100%;
   z-index: 10;
   height: 60px;
-  padding-top: 30px;
   background-color: black;
   color: white;
+  padding-top: 10px;
 }
 
 #header h1 {
-  margin-top: 40px;
+  margin-top: 0px;
   float: left;
   padding-left: 150px;
   width: 300px;
@@ -32,13 +36,14 @@ body {
 }
 
 #header h1 img {
-  width: 150px;
+  width: 190px;
 }
 
 #header form {
   padding-right: 150px;
   float: right;
   height: 30px;
+  padding-top: 10px;
 }
 
 #header form #searchInput {
@@ -50,11 +55,11 @@ body {
 #header form input[type="text"] {
   width: 150px;
   height: 37px;
-  border: 2px solid black;
+  border: 2px solid white;
   border-radius: 30px;
   background: none;
   outline: none;
-  color: black;
+  color: white;
   font-size: 13px;
   padding-left: 30px;
   padding-right: 30px;
@@ -75,23 +80,30 @@ body {
 
 /* ---------혜진--------- */
 
-#popular-title {
+#popular-title,
+#Cochelin-title {
   font-size: 28px;
 }
 
 /* 컨테이너 */
-#popular-movie-container {
+#popular-movie-container,
+#Cochelin-movie-container {
+  height: 400px;
+  width: 1140px;
+  margin: 0 auto;
   height: 350px;
-  width: 95%;
+  overflow: hidden;
   position: relative;
 
   /* !!!!!!!!!!!!!! */
-  margin-left: 20px;
+  margin-right: 30px;
 }
 
 /* 버튼 */
 #popular-movie-container .switchLeft,
-#popular-movie-container .switchRight {
+#popular-movie-container .switchRight,
+#Cochelin-movie-container .switchLeft,
+#Cochelin-movie-container .switchRight {
   font-weight: bold;
   height: 100%;
   width: 40px;
@@ -108,125 +120,29 @@ body {
   cursor: pointer;
 }
 
-#popular-movie-container .switchLeft {
-  position: absolute;
-  left: -50px;
-}
-
-#popular-movie-container .switchRight {
-  position: absolute;
-  right: -50px;
-}
-
-/* 슬라이드 */
-#popular-movie-list {
-  list-style: none;
-  height: 350px;
-  width: auto;
-  /* 자동 줄바꿈 방지 */
-  white-space: nowrap;
-  display: inline-block;
-  text-align: center;
-  /* padding-bottom: 10px !important; */
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-}
-
-/* #popular-movie-list.animated {
-  transition: 0.5s ease out;
-} */
-
-/* 아이템 */
-#popular-movie-item {
-  position: relative;
-  cursor: pointer;
-}
-/* 
-#popular-movie-item:not(:last-child) {
-  margin-right: 20px;
-} */
-
-#popular-movie-item:hover {
-  transform: scale(1.1);
-  transition: all 0.3s linear;
-  z-index: 5;
-}
-
-#popular-movie-item > img {
-  /* min-width: 147px;
-  max-width: 147px;
-  height: 200px; */
-  height: auto;
-  width: 200px;
-  /* background-size: cover; */
-  margin: 10px;
-  transition: 0.5s ease;
-  z-index: 2;
-}
-
-#popular-movie-rank {
-  position: absolute;
-  left: 7%;
-  top: 3%;
-  color: white;
-  font-size: 25px;
-}
-
-/* ---------혜진--------- */
-/* ---------혜진2--------- */
-
-#Cochelin-title {
-  font-size: 28px;
-}
-
-/* 컨테이너 */
-#Cochelin-movie-container {
-  height: 350px;
-  width: 95%;
-  position: relative;
-
-  /* !!!!!!!!!!!!!! */
-  margin-left: 20px;
-}
-
-/* 버튼 */
-#Cochelin-movie-container .switchLeft,
-#Cochelin-movie-container .switchRight {
-  font-weight: bold;
-  height: 100%;
-  width: 40px;
-  line-height: 330px;
-  font-size: 25px;
-  text-align: center;
-  font-family: sans-serif;
-  top: 0;
-  z-index: 3;
-}
-
+#popular-movie-container .switchLeft,
 #Cochelin-movie-container .switchLeft {
   position: absolute;
-  left: -50px;
+  left: 0px;
 }
 
+#popular-movie-container .switchRight,
 #Cochelin-movie-container .switchRight {
   position: absolute;
-  right: -50px;
+  right: 0px;
 }
 
 /* 슬라이드 */
+#popular-movie-list,
 #Cochelin-movie-list {
-  list-style: none;
-  height: 350px;
-  width: auto;
-  /* 자동 줄바꿈 방지 */
-  white-space: nowrap;
-  display: inline-block;
-  text-align: center;
-  /* padding-bottom: 10px !important; */
-  display: flex;
-  align-items: center;
-  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+#popular-movie-list.animated,
+#Cochelin-movie-list.animated {
+  transition: 0.5s ease-out;
 }
 
 /* #popular-movie-list.animated {
@@ -234,21 +150,26 @@ body {
 } */
 
 /* 아이템 */
+#popular-movie-item,
 #Cochelin-movie-item {
-  position: relative;
-  cursor: pointer;
+  width: 200px;
+  height: 350px;
+  float: left;
 }
-/* 
-#popular-movie-item:not(:last-child) {
-  margin-right: 20px;
-} */
 
+#popular-movie-item:not(:last-child),
+#Cochelin-movie-item:not(:last-child) {
+  margin-right: 30px;
+}
+
+#popular-movie-item:hover,
 #Cochelin-movie-item:hover {
   transform: scale(1.1);
   transition: all 0.3s linear;
   z-index: 5;
 }
 
+#popular-movie-item > img,
 #Cochelin-movie-item > img {
   /* min-width: 147px;
   max-width: 147px;
@@ -261,6 +182,7 @@ body {
   z-index: 2;
 }
 
+#popular-movie-rank,
 #name {
   position: absolute;
   left: 7%;
@@ -269,10 +191,9 @@ body {
   font-size: 25px;
 }
 
-/* ---------혜진2--------- */
+/* ---------혜진--------- */
 
 #main {
-  padding-top: 80px;
   margin-left: 100px;
   /* width 값 정하기 */
   width: 80%;
@@ -367,8 +288,17 @@ body {
   position: relative;
 }
 
+.text-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3; /* 필요에 따라 조정 가능 */
+  color: white; /* 텍스트 색상 설정 */
+}
+
 #movieListBtn {
-  width: 105px;
+  width: 70px;
   height: 22px;
   font-size: 20px;
   text-align: center;
@@ -378,15 +308,46 @@ body {
   border-radius: 15px;
 }
 
-#click-blocker {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  cursor: default;
-}
-
 #movieListBtn:hover {
   border: 2px solid white;
+}
+
+.button-overlay {
+  position: absolute;
+  bottom: 5%;
+  right: 3%;
+  transform: translate(-10%, -10%);
+  z-index: 3; /* 필요에 따라 조정 가능 */
+  color: white; /* 텍스트 색상 설정 */
+}
+
+.button-overlay #previousBtn,
+#nextBtn {
+  width: 70px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  color: black;
+  background-color: white;
+  margin-right: 20px;
+  cursor: pointer;
+}
+#muteButton {
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  bottom: 150%;
+  left: 1%;
+}
+#muteButton img {
+  width: 40px;
+}
+
+.soundBtn-overlay {
+  position: absolute;
+  bottom: 5%;
+  left: 6%;
+  transform: translate(-10%, -10%);
+  z-index: 3; /* 필요에 따라 조정 가능 */
+  color: white; /* 텍스트 색상 설정 */
 }

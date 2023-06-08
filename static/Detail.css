@@ -3,6 +3,72 @@ body {
   color: white;
 }
 
+* {
+  padding: 0;
+  margin: 0;
+}
+
+#header {
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  height: 60px;
+  background-color: black;
+  color: white;
+  padding-top: 10px;
+}
+
+#header h1 {
+  margin-top: 0px;
+  float: left;
+  padding-left: 150px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+#header h1 img {
+  width: 190px;
+}
+
+#header form {
+  padding-right: 150px;
+  float: right;
+  height: 30px;
+  padding-top: 10px;
+}
+
+#header form #searchInput {
+  width: 140px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+#header form input[type="text"] {
+  width: 150px;
+  height: 37px;
+  border: 2px solid white;
+  border-radius: 30px;
+  background: none;
+  outline: none;
+  color: white;
+  font-size: 13px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+#header form #searchBtn {
+  float: right;
+  padding: 4px 0 0 4px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  margin-top: 0;
+}
+
+#header form #searchBtn img {
+  width: 23px;
+}
+
 /* 영화 카드부분 */
 .card {
   display: inline-block;
@@ -13,7 +79,6 @@ body {
   height: 300px;
   padding: 20px;
   margin: 50px;
-  border: 1px solid #ccc;
   border-radius: 50px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -23,13 +88,12 @@ body {
 }
 
 .card img {
-  width: 100%;
   height: 100%;
   /* margin-bottom: 10px; */
 }
 
 .card h1 {
-  font-size: 18px;
+  font-size: 25px;
   margin-bottom: 10px;
 }
 
