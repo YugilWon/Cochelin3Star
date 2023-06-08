@@ -68,12 +68,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
   //비슷한 영화 추천 (수아)
   fetch(
-    `https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1`,
+    `https://api.themoviedb.org/3/movie/${id}/similar?language=ko-KR&page=1`,
     options
   )
     .then((response) => response.json())
     .then((data) => {
-      // console.log(data);
       let results = data["results"];
       results.map((a, i) => {
         let title = a["title"];
@@ -84,7 +83,7 @@ window.addEventListener("DOMContentLoaded", () => {
         let poster = `https://image.tmdb.org/t/p/w200` + a["poster_path"];
         let rank = i + 1;
         const movieInfo = document.createElement("li");
-        movieInfo.innerHTML = `  <div class= "wrap" onclick="viewDetails('${id}')">
+        movieInfo.innerHTML = `<div class= "wrap" onclick="viewDetails('${id}')">
 			                              <img src=${poster} alt="Movie Poster">
                                     <h3>${rank}</h3>
 			                              <span>${overview}</span>
@@ -92,21 +91,9 @@ window.addEventListener("DOMContentLoaded", () => {
 			                            </div>
 			                            <h2>${title}</h2>
 			                            <p>개봉 ${date} 평점 ${average}</p>`;
-        //만약 개봉예정작인 영화 표시 x 구현해야함.
 
+        //만약 개봉예정작인 영화 표시 x 구현해야함.
         document.querySelector("#similar-container").appendChild(movieInfo);
       });
     });
-
-  // 클릭시 상세페이지 로드
-  // function viewDetails(id) {
-  //   window.location.href = `Detail.html?id=${id}`;
-  // }
-  console.log(id);
-
-  window.onload = function () {
-    function viewDetails(id) {
-      window.location.href = `Detail.html?id=${id}`;
-    }
-  };
 });

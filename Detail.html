@@ -10,10 +10,10 @@
     <script src="static/showDetail.js" type="module"></script>
     <script src="static/comment.js" type="module"></script>
     <script src="static/Player.js" type="module"></script>
-    <script src="static/script.js" type="module"></script>
+    <script src="static/script.js" defer></script>
     <link href="static/Detail.css" rel="stylesheet" />
     <script src="https://www.youtube.com/iframe_api"></script>
-    
+
     <div id="header">
       <h1>
         <a href="index.html"><img src="img/logo.png" alt="MIA PEDIA" /></a>
@@ -22,6 +22,7 @@
         <input
           type="text"
           id="searchInput"
+          autocomplete="off"
           placeholder="영화 제목을 입력해주세요"
         />
         <button id="searchBtn">
@@ -29,7 +30,7 @@
         </button>
       </form>
     </div>
-    
+
     <!-- 유튜브 플레이어 -->
     <div id="player-wrapper">
       <div id="player"></div>
@@ -37,7 +38,7 @@
     </div>
     <button id="muteButton">음소거 해제</button>
 
-    <div id="movie-container"></div> 
+    <div id="movie-container"></div>
     <div id="comment-form-container"></div>
     <button id="show-comment-form-button">댓글 작성하기</button>
     <form id="comment-form">
@@ -57,12 +58,11 @@
         <button type="submit">댓글 남기기</button>
       </div>
     </form>
-  </div>
-
-    <div id="comment-container" class="comment-container"></div>
-    <!-- 비슷한 영화추천(수아) -->
-    <h3>이런 영화는 어떠세요 ?</h3>
-    <div id="similar-container" class="similar-container"></div>
-</div>
+    <div>
+      <div id="comment-container" class="comment-container"></div>
+      <!-- 비슷한 영화추천(수아) -->
+      <h3>이런 영화는 어떠세요 ?</h3>
+      <div id="similar-container" class="similar-container"></div>
+    </div>
   </body>
 </html>
