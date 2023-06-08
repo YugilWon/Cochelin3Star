@@ -109,7 +109,7 @@ function fetchMovieInfo(id, options) {
           player.unMute(); // 소리 켜기
           document.getElementById(
             "muteButton"
-          ).innerHTML = `<img src="img/mute.png" alt="음소거 해제" />`; // 버튼 텍스트 변경
+          ).innerHTML = `<img src="img/mute.png" alt="음소거" />`; // 버튼 텍스트 변경
         } else {
           player.mute(); // 소리 끄기
           document.getElementById(
@@ -239,6 +239,8 @@ topBtn.addEventListener("click", showTopPage);
 // 영화 리스트 더보기
 const clickMovieListBtn = document.getElementById("movieListBtn");
 const movieList = document.getElementById("movieList");
+
+movieList.style.display = "none";
 
 function moreMoiveList() {
   if (movieList.style.display === "none") {
