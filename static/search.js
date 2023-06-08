@@ -18,6 +18,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
       console.log(movies);
 
+      movieList.style.display = "block";
+
       movies.forEach((a) => {
         let title = a["title"];
         let id = a["id"];
