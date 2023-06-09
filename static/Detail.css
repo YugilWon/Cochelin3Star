@@ -265,34 +265,15 @@ body {
 }
 /* ------비슷한영화추천------ */
 #similar-container {
-  display: flex; /* 가로로 정렬 */
-  flex-wrap: wrap; /* 넘치는 경우 다음 줄로 이동 */
-  justify-content: flex-start; /* 왼쪽 정렬 */
-}
-
-#similar-movie-recommend {
-  font-size: 25px;
-  margin: 70px 0px 25px 35px;
-}
-
-#similar-container {
   /* 가로로 정렬 */
   display: flex;
   margin: 30px 40px 30px 40px;
   overflow: scroll;
 }
 
-#similar-container > li {
-  /* width: 200px; */
-  list-style: none;
-  /* float: left; */
-  /* 30, 30 , 0 , 60에서 수정 */
-  /* padding: 30px 30px 0px 30px; */
-  /* margin, box-sizing 추가 */
-  /* margin: 0 10px 20px 10px; */
-  margin-right: 10px; /* 오른쪽 여백 설정 */
-  margin-bottom: 20px; /* 아래쪽 여백 설정 */
-  box-sizing: border-box;
+#similar-movie-recommend {
+  font-size: 25px;
+  margin: 70px 0px 25px 35px;
 }
 
 #similar-container li .wrap {
