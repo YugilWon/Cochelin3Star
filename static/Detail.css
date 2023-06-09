@@ -1,11 +1,15 @@
-body {
-  background-color: black;
-  color: white;
-}
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 
 * {
   padding: 0;
   margin: 0;
+
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+body {
+  background-color: black;
+  color: white;
 }
 
 #header {
@@ -121,7 +125,7 @@ body {
   height: 30px;
   font-size: 20px;
   text-align: center;
-  line-height: 33px;
+  line-height: 28px;
   background-color: rgb(122, 89, 144);
   cursor: pointer;
   margin: 40px auto 40px auto;
@@ -130,6 +134,7 @@ body {
 
 #show-comment-form-button:hover {
   border: 2px solid white;
+  background-color: rgb(78, 58, 90);
 }
 
 /* 댓즐작성 폼 전체 */
@@ -163,15 +168,12 @@ body {
 #comment-form-btn {
   color: #fff;
   display: block;
-  /* margin-bottom: 50px;
-  margin-left: auto;
-  margin-right: auto; */
   margin: 20px auto 50px auto;
   width: 140px;
   height: 30px;
   font-size: 20px;
   text-align: center;
-  line-height: 33px;
+  line-height: 28px;
   background-color: rgb(122, 89, 144); /* rgb(36, 36, 36); */
   cursor: pointer;
   border-radius: 15px;
@@ -180,6 +182,7 @@ body {
 
 #comment-form-btn:hover {
   border: 2px solid white;
+  background-color: rgb(78, 58, 90);
 }
 
 /* 코멘트 디스플레이 부분 */
@@ -203,9 +206,15 @@ body {
   background-color: rgb(122, 89, 144);
   color: #ffffff;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 5px 10px;
+  margin: 15px 0px 0px 0px;
   cursor: pointer;
+}
+
+.delete-button:hover {
+  border: 2px solid white;
+  background-color: rgb(78, 58, 90);
 }
 
 /* 작성자 이름 진하게 */
@@ -227,15 +236,22 @@ body {
   background-color: rgb(122, 89, 144);
   color: #ffffff;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 5px 10px;
+  margin: 15px 25px 20px 0px;
   cursor: pointer;
+}
+
+.edit-button:hover {
+  border: 2px solid white;
+  background-color: rgb(78, 58, 90);
 }
 
 #player-wrapper {
   position: relative;
 }
 
+/* 플레이어 동작을 막기위한 블로커 */
 #click-blocker {
   position: absolute;
   top: 0;
@@ -256,8 +272,8 @@ body {
 
 .soundBtn-overlay {
   position: absolute;
-  bottom: 20%;
-  left: 7%;
+  bottom: 5%;
+  left: 6%;
   transform: translate(-10%, -10%);
   z-index: 3; /* 필요에 따라 조정 가능 */
   color: white; /* 텍스트 색상 설정 */
@@ -275,23 +291,10 @@ body {
   margin: 70px 0px 25px 35px;
 }
 
-#similar-container {
-  /* 가로로 정렬 */
-  display: flex;
-  margin: 30px 40px 30px 40px;
-  overflow: scroll;
-}
-
 #similar-container > li {
-  /* width: 200px; */
   list-style: none;
-  /* float: left; */
-  /* 30, 30 , 0 , 60에서 수정 */
-  /* padding: 30px 30px 0px 30px; */
-  /* margin, box-sizing 추가 */
-  /* margin: 0 10px 20px 10px; */
-  margin-right: 10px; /* 오른쪽 여백 설정 */
-  margin-bottom: 20px; /* 아래쪽 여백 설정 */
+  float: left;
+  margin: 0 10px 20px 10px;
   box-sizing: border-box;
 }
 

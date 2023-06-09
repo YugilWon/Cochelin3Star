@@ -16,8 +16,6 @@ window.addEventListener("DOMContentLoaded", () => {
         "#searchResult"
       ).innerHTML = `"${query}"에 대한 검색 결과입니다.`;
 
-      console.log(movies);
-
       movieList.style.display = "block";
 
       movies.forEach((a) => {

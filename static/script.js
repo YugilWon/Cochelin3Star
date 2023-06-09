@@ -19,7 +19,6 @@ function showMovieList(val) {
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       let results = data["results"];
       results.map((a, i) => {
         let title = a["title"];
@@ -151,6 +150,21 @@ function fetchMovieInfo(id, options) {
       function playVideoByIndex(index) {
         const videoKey = videoKeys[index];
         player.loadVideoById(videoKey);
+        // 플레이어 천천히 선명해지는 애니메이션 효과
+        const playerElement = document.getElementById("player");
+        playerElement.style.opacity = 0; // 초기 투명도 설정
+        // 애니메이션 효과 적용
+        let opacityValue = 0;
+        const animationInterval = 50; // 애니메이션 간격(ms) 조절 가능
+        const opacityIncrement = 0.05; // 투명도 증가량 조절 가능
+        const fadeEffect = setInterval(() => {
+          if (opacityValue < 1) {
+            opacityValue += opacityIncrement;
+            playerElement.style.opacity = opacityValue;
+          } else {
+            clearInterval(fadeEffect);
+          }
+        }, animationInterval);
       }
 
       function onPlayerReady(event) {

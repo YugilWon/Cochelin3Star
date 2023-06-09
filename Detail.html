@@ -7,8 +7,8 @@
     <title>Cochelin PEDIA : 영화소개페이지</title>
   </head>
   <body>
-    <script src="static/showDetail.js" type="module"></script>
-    <script src="static/comment.js" type="module"></script>
+    <script src="static/showDetail.js" defer></script>
+    <script src="static/comment.js" defer></script>
     <script src="static/Player.js" defer></script>
     <script src="static/script.js" defer></script>
     <link href="static/Detail.css" rel="stylesheet" />
@@ -35,12 +35,13 @@
     <div id="player-wrapper">
       <div id="player"></div>
       <div id="click-blocker"></div>
+      <div class="soundBtn-overlay">
+        <button id="muteButton">
+          <img src="img/play.png" alt="음소거 해제" />
+        </button>
+      </div>
     </div>
-    <div class="soundBtn-overlay">
-      <button id="muteButton">
-        <img src="img/play.png" alt="음소거 해제" />
-      </button>
-    </div>
+
     <div id="movie-container"></div>
     <div id="comment-form-container"></div>
     <div id="show-comment-form-button">댓글 작성하기</div>
