@@ -11,85 +11,123 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   };
 
-  fetch(
-    `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
-    options
-  )
+  fetch(`https://api.themoviedb.org/3/movie/${id}/videos?language=ko`, options)
     .then((response) => response.json())
     .then((response) => {
-      // 영화 비디오 정보를 가져온 후 videoVal에 할당
-      const videoVal = response.results[0].key;
-
-      // YouTube 플레이어 초기화
-      var tag = document.createElement("script");
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName("script")[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-      var player;
-      var isMuted = true;
-
-      function onYouTubeIframeAPIReady() {
-        player = new YT.Player("player", {
-          height: 600,
-          width: "100%",
-          videoId: videoVal,
-          playerVars: {
-            autoplay: 1,
-            mute: 1,
-            loop: 1,
-            controls: 0, // 플레이어 컨트롤러 숨김
-            showinfo: 0, // 동영상 정보 (로고, 제목 등) 숨김
-            disablekb: 1, //키보드 입력 비활성화
-          },
-          events: {
-            onReady: onPlayerReady,
-          },
-        });
+      if (response.results.length > 0) {
+        // 한국어로 된 예고편이 있으면 해당 예고편을 가져옴
+        const videoVal = response.results[0].key;
+        initializePlayer(videoVal);
+      } else {
+        // 한국어로 된 예고편이 없을 경우 영어로 된 예고편을 가져옴
+        fetch(
+          `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
+          options
+        )
+          .then((response) => response.json())
+          .then((response) => {
+            if (response.results.length > 0) {
+              // 영어로 된 예고편이 있으면 해당 예고편을 가져옴
+              const videoVal = response.results[0].key;
+              initializePlayer(videoVal);
+            } else {
+              throw new Error("예고편을 찾을 수 없습니다.");
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+            // 예고편을 가져오지 못한 경우에는 오류 메시지를 출력합니다.
+          });
       }
-
-      //음소거 상태를 토글하는 함수
-      function toggleMute() {
-        if (isMuted) {
-          player.unMute(); // 소리 켜기
-          document.getElementById(
-            "muteButton"
-          ).innerHTML = `<img src="img/mute.png" alt="음소거 해제" />`; // 버튼 텍스트 변경
-        } else {
-          player.mute(); // 소리 끄기
-          document.getElementById(
-            "muteButton"
-          ).innerHTML = `<img src="img/play.png" alt="음소거 해제" />`; // 버튼 텍스트 변경
-        }
-        isMuted = !isMuted; // 소리 상태 업데이트
-      }
-
-      function onPlayerReady(event) {
-        document.getElementById("player").addEventListener("mousedown", (e) => {
-          e.preventDefault(); // 마우스 올려서 영상 조작 등을 방지
-        });
-
-        // 음소거 버튼 클릭 이벤트 처리
-        const muteButton = document.getElementById("muteButton");
-        muteButton.addEventListener("click", toggleMute);
-
-        event.target.playVideo();
-      }
-
-      var done = false;
-      function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.PLAYING && !done) {
-        }
-      }
-      function stopVideo() {
-        player.stopVideo();
-      }
-
-      // onYouTubeIframeAPIReady();
-      // YouTube Iframe API 스크립트 로드 완료 시점에서 onYouTubeIframeAPIReady 함수 호출
-      tag.onload = onYouTubeIframeAPIReady;
     })
-    .catch((err) => console.error(err));
+    .catch((error) => {
+      console.error(error);
+      // 한국어 예고편을 가져오지 못한 경우에는 영어로 된 예고편을 가져옵니다.
+      fetch(
+        `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
+        options
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          if (response.results.length > 0) {
+            // 영어로 된 예고편이 있으면 해당 예고편을 가져옴
+            const videoVal = response.results[0].key;
+            initializePlayer(videoVal);
+          } else {
+            console.error("예고편을 찾을 수 없습니다.");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          // 예고편을 가져오지 못한 경우에는 오류 메시지를 출력합니다.
+        });
+    });
+
+  function initializePlayer(videoVal) {
+    var tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName("script")[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+    var isMuted = true;
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player("player", {
+        height: 600,
+        width: "100%",
+        videoId: videoVal,
+        playerVars: {
+          autoplay: 1,
+          mute: 1,
+          loop: 1,
+          controls: 0,
+          showinfo: 0,
+          disablekb: 1,
+        },
+        events: {
+          onReady: onPlayerReady,
+        },
+      });
+    }
+
+    function toggleMute() {
+      if (isMuted) {
+        player.unMute();
+        document.getElementById(
+          "muteButton"
+        ).innerHTML = `<img src="img/mute.png" alt="음소거 해제" />`;
+      } else {
+        player.mute();
+        document.getElementById(
+          "muteButton"
+        ).innerHTML = `<img src="img/play.png" alt="음소거 해제" />`;
+      }
+      isMuted = !isMuted;
+    }
+
+    function onPlayerReady(event) {
+      document.getElementById("player").addEventListener("mousedown", (e) => {
+        e.preventDefault();
+      });
+
+      const muteButton = document.getElementById("muteButton");
+      muteButton.addEventListener("click", toggleMute);
+
+      event.target.playVideo();
+    }
+
+    var done = false;
+    function onPlayerStateChange(event) {
+      if (event.data == YT.PlayerState.PLAYING && !done) {
+      }
+    }
+    function stopVideo() {
+      player.stopVideo();
+    }
+
+    tag.onload = onYouTubeIframeAPIReady;
+  }
 
   var clickBlocker = document.getElementById("click-blocker");
   clickBlocker.addEventListener("click", function (event) {

@@ -46,6 +46,7 @@ function showMovieList(val) {
         }
       });
       CochelinMoivesId.forEach((id) => {
+        console.log(CochelinMoivesId);
         // 영화 정보 가져오기
         fetchMovieInfo(id, options).then((videoVal) => {
           // YouTube 플레이어 초기화 후 loadVideoById 함수 호출

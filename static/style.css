@@ -196,8 +196,6 @@ body {
 /* ---------혜진--------- */
 
 #main {
-  /* margin-left: 100px; */
-  /* width 값 정하기 */
   width: 80%;
   margin: 0 auto;
 }
@@ -207,12 +205,10 @@ body {
 }
 
 #main > #movieList > li {
-  width: 200px;
+  display: inline-block;
+  width: 230px;
   list-style: none;
-  float: left;
-  /* 30, 30 , 0 , 60에서 수정 */
   padding: 0px 0px 0px 0px;
-  /* margin, box-sizing 추가 */
   margin: 30px 10px 20px 10px;
   box-sizing: border-box;
 }

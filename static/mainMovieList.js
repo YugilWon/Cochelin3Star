@@ -1,7 +1,7 @@
 const sliders = document.querySelector("#popular-movie-list");
 const CochelinSliders = document.querySelector("#Cochelin-movie-list");
 const CochelinMoivesId = [
-  350, 122906, 11324, 361743, 152601, 443129, 2062, 673, 4960, 76,
+  350, 122906, 11324, 361743, 152601, 306819, 2062, 673, 4960, 76,
 ];
 const nameArr = [
   "현수",
