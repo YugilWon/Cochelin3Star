@@ -3,7 +3,8 @@
 
 // 입력폼 이벤트 리스너
 const commentForm = document.getElementById("comment-form");
-commentForm.addEventListener("submit", handleFormSubmit);
+const commentFormBtn = document.getElementById("comment-form-btn");
+commentFormBtn.addEventListener("click", handleFormSubmit);
 
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get("id");
@@ -194,8 +195,10 @@ function toggleCommentForm() {
   const commentForm = document.getElementById("comment-form");
   if (commentForm.style.display === "none") {
     commentForm.style.display = "block";
+    // showCommentFormButton.innerText = "댓글 작성완료";
   } else {
     commentForm.style.display = "none";
+    // showCommentFormButton.innerText = "댓글 작성하기";
   }
 }
 

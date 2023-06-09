@@ -82,6 +82,7 @@ body {
 
 #popular-title,
 #Cochelin-title {
+  margin: 50px auto 10px auto;
   font-size: 28px;
 }
 
@@ -107,7 +108,7 @@ body {
   font-weight: bold;
   height: 100%;
   width: 40px;
-  line-height: 330px;
+  line-height: 310px;
   font-size: 25px;
   text-align: center;
   font-family: sans-serif;
@@ -145,10 +146,6 @@ body {
   transition: 0.5s ease-out;
 }
 
-/* #popular-movie-list.animated {
-  transition: 0.5s ease out;
-} */
-
 /* 아이템 */
 #popular-movie-item,
 #Cochelin-movie-item {
@@ -164,7 +161,7 @@ body {
 
 #popular-movie-item:hover,
 #Cochelin-movie-item:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   transition: all 0.3s linear;
   z-index: 5;
 }
@@ -176,7 +173,6 @@ body {
   height: 200px; */
   height: auto;
   width: 200px;
-  /* background-size: cover; */
   margin: 10px;
   transition: 0.5s ease;
   z-index: 2;
@@ -194,10 +190,14 @@ body {
 /* ---------혜진--------- */
 
 #main {
-  margin-left: 100px;
+  /* margin-left: 100px; */
   /* width 값 정하기 */
   width: 80%;
   margin: 0 auto;
+}
+
+#main > #movieList {
+  display: flex;
 }
 
 #main > #movieList > li {
@@ -297,14 +297,14 @@ body {
 }
 
 #movieListBtn {
-  width: 100px;
+  width: 120px;
   height: 30px;
-  font-size: 17px;
+  font-size: 20px;
   text-align: center;
   line-height: 33px;
-  background-color: rgb(36, 36, 36);
+  background-color: rgb(115, 87, 133);
   cursor: pointer;
-  margin-left: 50%;
+  margin: 50px 50% 50px 50%;
   border-radius: 15px;
 }
 
