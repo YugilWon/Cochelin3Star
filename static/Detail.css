@@ -188,22 +188,21 @@ body {
 /* 코멘트 디스플레이 부분 */
 .comment {
   margin-bottom: 10px;
-  width: 550px;
-  /* width: 60%; */
-  padding: 5px;
+  width: 40%;
+  padding: 15px;
   text-align: center;
-  border: 2px solid #ccc;
-  border-radius: 20px;
+  border-radius: 10px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
+  background-color: rgb(40, 40, 40);
 }
 
 /* 삭제버튼 */
 .delete-button {
   position: absolute;
-  top: 0px;
-  right: 30px;
+  top: 10px;
+  right: 10px;
   background-color: rgb(122, 89, 144);
   color: #ffffff;
   border: none;
@@ -232,8 +231,8 @@ body {
 /* 수정버튼 */
 .edit-button {
   position: absolute;
-  top: 0px;
-  right: 60px;
+  top: 10px;
+  right: 45px;
   background-color: rgb(122, 89, 144);
   color: #ffffff;
   border: none;
