@@ -1,3 +1,4 @@
+// input값을 query로 받기
 window.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
   const query = urlParams.get("query").toLowerCase().trim();
@@ -12,6 +13,7 @@ window.addEventListener("DOMContentLoaded", () => {
       // 새로고침
       document.querySelector("#movieList").innerHTML = "";
 
+      // 검색 결과 문구
       document.querySelector(
         "#searchResult"
       ).innerHTML = `"${query}"에 대한 검색 결과입니다.`;
@@ -22,8 +24,6 @@ window.addEventListener("DOMContentLoaded", () => {
         let title = a["title"];
         let id = a["id"];
         let overview = a["overview"];
-        let date = a["release_date"];
-        let average = a["vote_average"];
         let poster = `https://image.tmdb.org/t/p/w200` + a["poster_path"];
         let adult = a["adult"];
         if (adult == false) {

@@ -217,22 +217,9 @@ searchBtn.addEventListener("click", showSearchList);
 
 function showSearchList(e) {
   e.preventDefault(); // 브라우저의 기본동작 제한, 폼 제출시 페이지가 새로고침 되는 것을 막음
-  // movieList.innerHTML = ""; // 빈 여백값으로 만듬
   const val = searchInput.value;
   window.location.href = `search.html?query=${val}`;
 }
-
-// id 조회기능
-// function showMovieInfo(e) {
-//   const wrapElement = e.target.closest(".wrap");
-//   if (wrapElement) {
-//     const title = wrapElement.nextElementSibling.textContent;
-//     const id = wrapElement.querySelector("p").textContent;
-
-//     alert(`"${title}" 의 id는 "${id}" 입니다.`);
-//   }
-// }
-// movieList.addEventListener("click", showMovieInfo);
 
 // 페이지 로드시 커서 입력창에 위치
 window.onload = function () {
@@ -250,7 +237,7 @@ const showTopPage = () => {
 
 topBtn.addEventListener("click", showTopPage);
 
-// 영화 리스트 더보기
+// 영화 리스트 더보기 버튼
 const clickMovieListBtn = document.getElementById("movieListBtn");
 const movieList = document.getElementById("movieList");
 
