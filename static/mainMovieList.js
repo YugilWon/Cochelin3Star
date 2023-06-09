@@ -1,5 +1,7 @@
 const sliders = document.querySelector("#popular-movie-list");
 const CochelinSliders = document.querySelector("#Cochelin-movie-list");
+
+// Cochelin's pick 영화 id와 name 배열 변수에 할당
 const CochelinMoivesId = [
   350, 122906, 11324, 361743, 152601, 443129, 2062, 673, 4960, 76,
 ];
@@ -16,10 +18,7 @@ const nameArr = [
   "수아",
 ];
 
-let scrollPerClick;
-let ImagePadding = 20;
-let scrollAmount = 0;
-
+// popular movie fetch
 fetch("https://api.themoviedb.org/3/movie/popular?language=ko&page=1", options)
   .then((response) => response.json())
   .then((response) => {
@@ -43,11 +42,6 @@ fetch("https://api.themoviedb.org/3/movie/popular?language=ko&page=1", options)
     });
   })
   .catch((err) => console.error(err));
-
-//페이지를 로드할 때 id값으로 불러오기
-function viewDetails(movieId) {
-  window.location.href = `Detail.html?id=${movieId}`;
-}
 
 let slides,
   slide,
@@ -120,8 +114,7 @@ function moveSlide(num) {
   }
 }
 
-// ========================================================
-
+// Cochelin movie fetch
 for (let i = 0; i < CochelinMoivesId.length; i++) {
   fetch(
     "https://api.themoviedb.org/3/movie/" +
@@ -232,4 +225,9 @@ function CmoveSlide(num) {
       Cslides.classList.add("animated");
     }, 800);
   }
+}
+
+//페이지를 로드할 때 id값으로 불러오기
+function viewDetails(movieId) {
+  window.location.href = `Detail.html?id=${movieId}`;
 }
