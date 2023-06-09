@@ -234,6 +234,7 @@ body {
   position: relative;
 }
 
+/* 플레이어 동작을 막기위한 블로커 */
 #click-blocker {
   position: absolute;
   top: 0;

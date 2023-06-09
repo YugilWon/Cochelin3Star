@@ -24,7 +24,6 @@ window.addEventListener("DOMContentLoaded", () => {
       const poster = `https://image.tmdb.org/t/p/w300${posterPath}`;
       const runtime = data.runtime;
       const genres = data.genres;
-      console.log(data.genres);
 
       // 영화 카드 생성
       const card1 = document.createElement("div");
