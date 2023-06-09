@@ -187,7 +187,7 @@ body {
 .comment {
   margin-bottom: 10px;
   width: 40%;
-  padding: 15px;
+  padding: 25px;
   text-align: center;
   border-radius: 10px;
   margin-left: auto;
@@ -199,8 +199,8 @@ body {
 /* 삭제버튼 */
 .delete-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0px;
+  right: 20px;
   background-color: rgb(122, 89, 144);
   color: #ffffff;
   border: none;
@@ -217,6 +217,7 @@ body {
 
 /* 작성자 이름 진하게 */
 .comment-author {
+  margin-top: 10px;
   font-weight: bold;
 }
 
@@ -229,7 +230,7 @@ body {
 /* 수정버튼 */
 .edit-button {
   position: absolute;
-  top: 10px;
+  top: 0px;
   right: 45px;
   background-color: rgb(122, 89, 144);
   color: #ffffff;

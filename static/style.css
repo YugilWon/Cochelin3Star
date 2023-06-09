@@ -191,10 +191,6 @@ body {
   margin: 0 auto;
 }
 
-#main > #movieList {
-  display: flex;
-}
-
 #main > #movieList > li {
   display: inline-block;
   width: 230px;
