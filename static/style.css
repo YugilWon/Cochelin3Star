@@ -202,14 +202,10 @@ body {
   margin: 0 auto;
 }
 
-#main > #movieList {
-  display: flex;
-}
-
 #main > #movieList > li {
   width: 200px;
   list-style: none;
-  float: left;
+  display: inline-block;
   /* 30, 30 , 0 , 60에서 수정 */
   padding: 0px 0px 0px 0px;
   /* margin, box-sizing 추가 */
