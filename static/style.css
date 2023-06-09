@@ -1,6 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+
 * {
   padding: 0;
   margin: 0;
+
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 a {
@@ -183,8 +187,10 @@ body {
   position: absolute;
   left: 7%;
   top: 3%;
-  color: white;
+  color: rgb(240, 240, 240);
   font-size: 25px;
+  font-style: italic;
+  text-shadow: 2px 2px 2px #000000;
 }
 
 /* ---------혜진--------- */
@@ -196,13 +202,12 @@ body {
   margin: 0 auto;
 }
 
-
 #main > #movieList {
   display: flex;
 }
 
 #main > #movieList > li {
-  width: 230px;
+  width: 200px;
   list-style: none;
   float: left;
   /* 30, 30 , 0 , 60에서 수정 */
@@ -311,15 +316,16 @@ body {
   height: 30px;
   font-size: 20px;
   text-align: center;
-  line-height: 33px;
+  line-height: 30px;
   background-color: rgb(115, 87, 133);
   cursor: pointer;
-  margin: 50px 50% 50px 50%;
+  margin: 50px 50% 50px 47%;
   border-radius: 15px;
 }
 
 #movieListBtn:hover {
   border: 2px solid white;
+  background-color: rgb(78, 58, 90);
 }
 
 .button-overlay {
