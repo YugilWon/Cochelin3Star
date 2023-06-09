@@ -104,6 +104,10 @@ window.addEventListener("DOMContentLoaded", () => {
         let average = a["vote_average"];
         let poster = `https://image.tmdb.org/t/p/w200` + a["poster_path"];
         let rank = i + 1;
+        let adult = a["adult"];
+        console.log(adult);
+
+        // if (!adult) {
         const movieInfo = document.createElement("li");
         movieInfo.innerHTML = `<div class= "wrap" onclick="viewDetails('${id}')">
 			                              <img src=${poster} alt="Movie Poster">
@@ -116,6 +120,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
         //만약 개봉예정작인 영화 표시 x 구현해야함.
         document.querySelector("#similar-container").appendChild(movieInfo);
+        // }
       });
     });
 });

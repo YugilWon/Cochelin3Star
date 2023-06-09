@@ -185,23 +185,22 @@ body {
 /* 코멘트 디스플레이 부분 */
 .comment {
   margin-bottom: 10px;
-  width: 500px;
-  width: 60%;
-  padding: 5px;
+  width: 40%;
+  padding: 15px;
   text-align: center;
-  border: 1px solid #ccc;
-  border-radius: 50px;
+  border-radius: 10px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
+  background-color: rgb(40, 40, 40);
 }
 
 /* 삭제버튼 */
 .delete-button {
   position: absolute;
-  top: 0px;
-  right: 30px;
-  background-color: #ff0000;
+  top: 10px;
+  right: 10px;
+  background-color: rgb(122, 89, 144);
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -223,9 +222,9 @@ body {
 /* 수정버튼 */
 .edit-button {
   position: absolute;
-  top: 0px;
-  right: 60px;
-  background-color: #ff0000;
+  top: 10px;
+  right: 45px;
+  background-color: rgb(122, 89, 144);
   color: #ffffff;
   border: none;
   border-radius: 5px;
@@ -265,9 +264,10 @@ body {
 }
 /* ------비슷한영화추천------ */
 #similar-container {
-  display: flex; /* 가로로 정렬 */
-  flex-wrap: wrap; /* 넘치는 경우 다음 줄로 이동 */
-  justify-content: flex-start; /* 왼쪽 정렬 */
+  /* 가로로 정렬 */
+  display: flex;
+  margin: 30px 40px 30px 40px;
+  overflow: scroll;
 }
 
 #similar-movie-recommend {

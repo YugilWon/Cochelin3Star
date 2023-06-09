@@ -27,16 +27,19 @@ window.addEventListener("DOMContentLoaded", () => {
         let date = a["release_date"];
         let average = a["vote_average"];
         let poster = `https://image.tmdb.org/t/p/w200` + a["poster_path"];
-
-        const movieInfo = document.createElement("li");
-        movieInfo.innerHTML = `<div class= "wrap" onclick="viewDetails('${id}')">
+        let adult = a["adult"];
+        if (adult == false) {
+          console.log(adult);
+          const movieInfo = document.createElement("li");
+          movieInfo.innerHTML = `<div class= "wrap" onclick="viewDetails('${id}')">
 			                              <img src=${poster} alt="Movie Poster">
 			                              <span>${overview}</span>
                                     <p>${id}</p>
 			                            </div>
 			                            <h2>${title}</h2>`;
 
-        document.querySelector("#movieList").appendChild(movieInfo);
+          document.querySelector("#movieList").appendChild(movieInfo);
+        }
       });
     })
     .catch((err) => console.error(err));
