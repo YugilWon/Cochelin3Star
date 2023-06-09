@@ -113,7 +113,7 @@ function handleFormSubmit(event) {
 //삭제버튼 commentId값을 매개변수로 버튼 생성
 function createDeleteButton(commentId) {
   const deleteButton = document.createElement("button");
-  deleteButton.textContent = "X"; //이미지 넣으려면 .innerHTML로 변경 필요
+  deleteButton.textContent = "삭제"; //이미지 넣으려면 .innerHTML로 변경 필요
   deleteButton.classList.add("delete-button");
   deleteButton.addEventListener("click", function (event) {
     event.preventDefault();
