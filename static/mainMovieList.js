@@ -59,7 +59,6 @@ let slides,
 // 슬라이드의 복사본을 만들어 앞또는 뒤에 추가
 function makeClone() {
   // 뒷부분의 복사본
-  console.log(slide);
   for (let i = 0; i < slideCount; i++) {
     // a.cloneNode() => a 요소를 그대로 복사
     // a.cloneNode(true) => a 뿐만 아니라 a 의 자식 모두 복사

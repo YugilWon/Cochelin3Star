@@ -19,7 +19,6 @@ function showMovieList(val) {
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       let results = data["results"];
       results.map((a, i) => {
         let title = a["title"];
@@ -48,6 +47,7 @@ function showMovieList(val) {
       });
       CochelinMoivesId.forEach((id) => {
         // 영화 정보 가져오기
+        console.log(CochelinMoivesId);
         fetchMovieInfo(id, options).then((videoVal) => {
           // YouTube 플레이어 초기화 후 loadVideoById 함수 호출
           onYouTubeIframeAPIReady();
