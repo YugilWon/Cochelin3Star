@@ -39,6 +39,7 @@ fetch("https://api.themoviedb.org/3/movie/popular?language=ko&page=1", options)
                   </li>`;
 
       sliders.innerHTML += temp_html;
+      CochelinMoivesId.push(id);
     });
   })
   .catch((err) => console.error(err));

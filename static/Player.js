@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       function onYouTubeIframeAPIReady() {
         player = new YT.Player("player", {
-          height: 720,
+          height: 600,
           width: "100%",
           videoId: videoVal,
           playerVars: {

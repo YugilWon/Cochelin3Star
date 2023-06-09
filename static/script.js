@@ -46,7 +46,6 @@ function showMovieList(val) {
           CochelinMoivesId.push(id);
         }
       });
-
       CochelinMoivesId.forEach((id) => {
         // 영화 정보 가져오기
         fetchMovieInfo(id, options).then((videoVal) => {
@@ -58,6 +57,7 @@ function showMovieList(val) {
     })
     .catch((err) => console.error(err));
 }
+
 // "" 가 입력된 상태로 함수 실행 --> 영화 전체목록 보여줌
 showMovieList("");
 // 영화 정보를 가져와서 YouTube 플레이어를 초기화하는 함수
