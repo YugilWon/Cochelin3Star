@@ -82,7 +82,6 @@ body {
   align-items: center;
   justify-content: center;
   margin-top: 50px;
-  /* text-align: left; 가로로 정렬되면서 중앙에 위치 */
 }
 
 /* 영화 카드 '이미지'부분 */
@@ -90,7 +89,6 @@ body {
   margin-left: 60px;
   border-radius: 20px;
   overflow: hidden;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
 }
 
 /* 영화 카드 '텍스트'부분 */
@@ -189,7 +187,7 @@ body {
 .comment {
   margin-bottom: 10px;
   width: 40%;
-  padding: 15px;
+  padding: 25px;
   text-align: center;
   border-radius: 10px;
   margin-left: auto;
@@ -201,8 +199,8 @@ body {
 /* 삭제버튼 */
 .delete-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0px;
+  right: 20px;
   background-color: rgb(122, 89, 144);
   color: #ffffff;
   border: none;
@@ -219,6 +217,7 @@ body {
 
 /* 작성자 이름 진하게 */
 .comment-author {
+  margin-top: 10px;
   font-weight: bold;
 }
 
@@ -231,7 +230,7 @@ body {
 /* 수정버튼 */
 .edit-button {
   position: absolute;
-  top: 10px;
+  top: 0px;
   right: 45px;
   background-color: rgb(122, 89, 144);
   color: #ffffff;
@@ -278,9 +277,9 @@ body {
   z-index: 3; /* 필요에 따라 조정 가능 */
   color: white; /* 텍스트 색상 설정 */
 }
+
 /* ------비슷한영화추천------ */
 #similar-container {
-  /* 가로로 정렬 */
   display: flex;
   margin: 30px 40px 30px 40px;
   overflow: scroll;

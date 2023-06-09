@@ -82,15 +82,13 @@ body {
   width: 23px;
 }
 
-/* ---------혜진--------- */
-
 #popular-title,
 #Cochelin-title {
   margin: 50px auto 10px auto;
   font-size: 28px;
 }
 
-/* 컨테이너 */
+/* 슬라이드 컨테이너 */
 #popular-movie-container,
 #Cochelin-movie-container {
   height: 400px;
@@ -99,12 +97,10 @@ body {
   height: 350px;
   overflow: hidden;
   position: relative;
-
-  /* !!!!!!!!!!!!!! */
   margin-right: 30px;
 }
 
-/* 버튼 */
+/* 슬라이드 버튼 */
 #popular-movie-container .switchLeft,
 #popular-movie-container .switchRight,
 #Cochelin-movie-container .switchLeft,
@@ -137,7 +133,7 @@ body {
   right: 0px;
 }
 
-/* 슬라이드 */
+/* 슬라이드 리스트 */
 #popular-movie-list,
 #Cochelin-movie-list {
   position: absolute;
@@ -150,7 +146,7 @@ body {
   transition: 0.5s ease-out;
 }
 
-/* 아이템 */
+/* 슬라이드 아이템 */
 #popular-movie-item,
 #Cochelin-movie-item {
   width: 200px;
@@ -172,9 +168,6 @@ body {
 
 #popular-movie-item > img,
 #Cochelin-movie-item > img {
-  /* min-width: 147px;
-  max-width: 147px;
-  height: 200px; */
   height: auto;
   width: 200px;
   margin: 10px;
@@ -193,15 +186,9 @@ body {
   text-shadow: 2px 2px 2px #000000;
 }
 
-/* ---------혜진--------- */
-
 #main {
   width: 80%;
   margin: 0 auto;
-}
-
-#main > #movieList {
-  display: flex;
 }
 
 #main > #movieList > li {
