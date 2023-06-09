@@ -69,42 +69,67 @@ body {
   width: 23px;
 }
 
-/* 영화 카드부분 */
-.card {
-  display: inline-block;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 500px;
-  height: 300px;
-  padding: 20px;
-  margin: 50px;
-  border-radius: 50px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
+/* 영화 카드 '전체'부분 */
 #movie-container {
-  text-align: center; /* 가로로 정렬되면서 중앙에 위치 */
+  background-color: rgba(70, 70, 70, 0.346);
+  height: 550px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  /* text-align: left; 가로로 정렬되면서 중앙에 위치 */
 }
 
-.card img {
-  height: 100%;
-  /* margin-bottom: 10px; */
+/* 영화 카드 '이미지'부분 */
+.card {
+  margin-left: 60px;
+  border-radius: 20px;
+  overflow: hidden;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
 }
 
-.card h1 {
-  font-size: 25px;
+/* 영화 카드 '텍스트'부분 */
+.card-text {
+  margin-left: 80px;
+  width: 630px;
+}
+
+.card-text h1 {
+  font-size: 30px;
+  margin-bottom: 27px;
+}
+
+.card-text h3 {
+  font-size: 17px;
+  margin-bottom: 20px;
+  font-weight: normal;
+}
+
+.card-text p {
+  font-size: 15px;
   margin-bottom: 10px;
 }
 
-.card h2 {
-  font-size: 16px;
-  margin-bottom: 10px;
+/* 댓글 작성하기 버튼 */
+#show-comment-form-button {
+  display: block;
+  margin-bottom: 50px;
+  color: #fff;
+
+  width: 140px;
+  height: 30px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 33px;
+  background-color: rgb(122, 89, 144);
+  cursor: pointer;
+  margin: 40px auto 40px auto;
+  border-radius: 15px;
 }
 
-.card p {
-  font-size: 14px;
-  margin-bottom: 10px;
+#show-comment-form-button:hover {
+  border: 2px solid white;
 }
 
 /* 댓즐작성 폼 전체 */
@@ -135,17 +160,26 @@ body {
 }
 
 /* 댓글 남기기 버튼 */
-#comment-form button {
-  width: 100px;
-  padding: 5px;
-  background-color: #333;
+#comment-form-btn {
   color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
   display: block;
-  margin: 0 auto;
-  margin-bottom: 10px;
+  /* margin-bottom: 50px;
+  margin-left: auto;
+  margin-right: auto; */
+  margin: 20px auto 50px auto;
+  width: 140px;
+  height: 30px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 33px;
+  background-color: rgb(122, 89, 144); /* rgb(36, 36, 36); */
+  cursor: pointer;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+#comment-form-btn:hover {
+  border: 2px solid white;
 }
 
 /* 코멘트 디스플레이 부분 */
@@ -199,16 +233,6 @@ body {
   cursor: pointer;
 }
 
-/* 댓글 작성하기 버튼 */
-#show-comment-form-button {
-  display: block;
-  margin: 0 auto;
-  margin-bottom: 10px;
-  text-align: center;
-  background-color: #333;
-  color: #fff;
-}
-
 #player-wrapper {
   position: relative;
 }
@@ -246,8 +270,20 @@ body {
   justify-content: flex-start; /* 왼쪽 정렬 */
 }
 
+#similar-movie-recommend {
+  font-size: 25px;
+  margin: 70px 0px 25px 35px;
+}
+
+#similar-container {
+  /* 가로로 정렬 */
+  display: flex;
+  margin: 30px 40px 30px 40px;
+  overflow: scroll;
+}
+
 #similar-container > li {
-  width: 200px;
+  /* width: 200px; */
   list-style: none;
   /* float: left; */
   /* 30, 30 , 0 , 60에서 수정 */

@@ -21,7 +21,10 @@ window.addEventListener("DOMContentLoaded", () => {
       const averageVote = data.vote_average;
       // data.backdrop_path
       const posterPath = data.poster_path;
-      const poster = `https://image.tmdb.org/t/p/w200${posterPath}`;
+      const poster = `https://image.tmdb.org/t/p/w300${posterPath}`;
+      const runtime = data.runtime;
+      const genres = data.genres;
+      console.log(data.genres);
 
       // 영화 카드 생성
       const card1 = document.createElement("div");
@@ -39,7 +42,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       // 두 번째 카드 (나머지 내용)
       const card2 = document.createElement("div");
-      card2.classList.add("card");
+      card2.classList.add("card-text");
 
       // 영화 제목
       const titleElement = document.createElement("h1");
@@ -47,7 +50,7 @@ window.addEventListener("DOMContentLoaded", () => {
       card2.appendChild(titleElement);
 
       // 영화 내용
-      const overviewElement = document.createElement("h2");
+      const overviewElement = document.createElement("h3");
       overviewElement.textContent = overview;
       card2.appendChild(overviewElement);
 
@@ -56,13 +59,31 @@ window.addEventListener("DOMContentLoaded", () => {
       releaseDateElement.textContent = "개봉일 : " + releaseDate;
       card2.appendChild(releaseDateElement);
 
+      // 영화 장르
+      const genresElement = document.createElement("p");
+      genresElement.textContent = "장르 : ";
+      genres.forEach((a) => {
+        const genresName = a["name"];
+        genresElement.textContent += genresName + " ";
+        card2.appendChild(genresElement);
+      });
+
       // 영화 평점
       const averageVoteElement = document.createElement("p");
       averageVoteElement.textContent = "평점 : " + averageVote;
       card2.appendChild(averageVoteElement);
 
+      // 영화 런타임
+      const runtimeElement = document.createElement("p");
+      runtimeElement.textContent = "러닝타임 : " + runtime + "분";
+      card2.appendChild(runtimeElement);
+
       // 컨테이너에 두 번째 카드 추가
       container.appendChild(card2);
+
+      document.querySelector(
+        "#similar-movie-recommend"
+      ).innerHTML = `${title}와(과) 비슷한 장르의 영화`;
     })
     .catch((err) => console.error(err));
 
@@ -74,6 +95,7 @@ window.addEventListener("DOMContentLoaded", () => {
     .then((response) => response.json())
     .then((data) => {
       let results = data["results"];
+
       results.map((a, i) => {
         let title = a["title"];
         let id = a["id"];

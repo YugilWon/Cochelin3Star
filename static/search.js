@@ -34,8 +34,7 @@ window.addEventListener("DOMContentLoaded", () => {
 			                              <span>${overview}</span>
                                     <p>${id}</p>
 			                            </div>
-			                            <h2>${title}</h2>
-			                            <p>개봉 ${date} 평점 ${average}</p>`;
+			                            <h2>${title}</h2>`;
 
         document.querySelector("#movieList").appendChild(movieInfo);
       });

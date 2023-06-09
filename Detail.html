@@ -43,7 +43,7 @@
     </div>
     <div id="movie-container"></div>
     <div id="comment-form-container"></div>
-    <button id="show-comment-form-button">댓글 작성하기</button>
+    <div id="show-comment-form-button">댓글 작성하기</div>
     <form id="comment-form">
       <div>
         <label for="author">작성자:</label>
@@ -58,13 +58,13 @@
         <input type="password" id="password" required />
       </div>
       <div>
-        <button type="submit">댓글 남기기</button>
+        <div id="comment-form-btn" type="submit">댓글 남기기</div>
       </div>
     </form>
     <div>
       <div id="comment-container" class="comment-container"></div>
       <!-- 비슷한 영화추천(수아) -->
-      <h3>이런 영화는 어떠세요 ?</h3>
+      <h3 id="similar-movie-recommend"></h3>
       <div id="similar-container" class="similar-container"></div>
     </div>
   </body>
